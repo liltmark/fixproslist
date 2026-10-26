@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" id="meta-desc" content="FixProsList — find trusted local home-service pros across the USA, or list your business free. Plumbing, electrical, HVAC, roofing, garage doors, appliances, painting and 24/7 emergency help." />
+<link rel="icon" href="data:," />
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://fixproslist.com/sitemap.xml" />
+<title>FixProsList — Find Local Home Service Pros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --surface2:#eceff3;
+  --ink:#15222f; --ink2:#4a5a6a; --line:#d8dee5;
+  --navy:#0d2b4d; --navy2:#123a66;
+  --accent:#e85d1f; --accent-ink:#ffffff;
+  --gold:#b97d0a; --gold-bg:#fdf3dd;
+  --good:#177245; --good-bg:#e3f2e8;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(13,43,77,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1219; --surface:#131e29; --surface2:#1a2836;
+    --ink:#e8eef4; --ink2:#a7b6c4; --line:#2a3a4a;
+    --navy:#0a1f38; --navy2:#123a66;
+    --gold:#e3aa2e; --gold-bg:#2e2410;
+    --good:#4cc084; --good-bg:#12291d;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3,.display{font-family:"Archivo",system-ui,sans-serif;line-height:1.12;margin:0}
+a{color:var(--navy2)}
+@media (prefers-color-scheme: dark){a{color:#7db1e8}}
+img,svg{display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:18px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--navy);display:grid;place-items:center;flex:none}
+.brand .mark svg{width:22px;height:22px}
+.brand .name{font-family:"Archivo";font-weight:800;font-size:1.22rem;letter-spacing:-.01em;line-height:1}
+.brand .name em{font-style:normal;color:var(--accent)}
+.brand .tag{font-size:.68rem;color:var(--ink2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+nav.main{display:flex;gap:4px;margin-left:auto;align-items:center}
+nav.main a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.94rem;padding:8px 11px;border-radius:8px}
+nav.main a:hover{background:var(--surface2)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;text-decoration:none;font-weight:700;border-radius:10px;padding:12px 20px;font-size:.98rem;transition:transform .06s ease, background .15s ease}
+.btn:active{transform:translateY(1px)}
+.btn-accent{background:var(--accent);color:var(--accent-ink)}
+.btn-accent:hover{background:#d14f16}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy2)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink2)}
+.btn-sm{padding:9px 15px;font-size:.9rem}
+.menu-btn{display:none;margin-left:auto;background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;cursor:pointer;font-weight:700}
+@media (max-width:820px){
+  nav.main{display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:2px}
+  nav.main.open{display:flex}
+  nav.main a{padding:12px 10px}
+  nav.main .btn{justify-content:center;margin-top:8px}
+  .menu-btn{display:block}
+}
+
+/* ---------- hero ---------- */
+.hero{background:var(--navy);color:#eef3f9;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -10% -55% auto;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,31,.28),transparent 65%)}
+.hero-in{padding:56px 0 64px;position:relative;z-index:1;max-width:760px}
+.hero h1{font-size:clamp(2rem,5.2vw,3.3rem);font-weight:900;letter-spacing:-.015em}
+.hero h1 .hl{color:#ffb287}
+.hero p.lede{font-size:1.13rem;color:#c6d4e4;margin:16px 0 28px;max-width:600px}
+.searchbar{background:var(--surface);border-radius:14px;padding:8px;display:flex;gap:8px;box-shadow:var(--shadow)}
+.searchbar select,.searchbar input{border:0;background:transparent;padding:12px 10px;min-width:0;color:var(--ink)}
+.searchbar select{flex:1.1;font-weight:600}
+.searchbar input{flex:1;border-left:1px solid var(--line)}
+.searchbar .btn{flex:none}
+@media (max-width:640px){
+  .searchbar{flex-direction:column}
+  .searchbar input{border-left:0;border-top:1px solid var(--line)}
+  .searchbar .btn{justify-content:center}
+}
+.hero-points{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:.92rem;color:#c6d4e4;font-weight:600}
+.hero-points span{display:inline-flex;gap:7px;align-items:center}
+.hero-points svg{width:16px;height:16px;flex:none}
+
+/* ---------- sections ---------- */
+section.block{padding:52px 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.01em}
+.sec-head p{color:var(--ink2);margin:6px 0 0;max-width:560px}
+.sec-head a.more{font-weight:700;text-decoration:none;white-space:nowrap}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:10px}
+.tile:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.tile .ic{width:44px;height:44px;border-radius:11px;background:var(--surface2);display:grid;place-items:center}
+.tile .ic svg{width:24px;height:24px;stroke:var(--navy2)}
+@media (prefers-color-scheme: dark){.tile .ic svg{stroke:#7db1e8}}
+.tile b{font-family:"Archivo";font-size:1.02rem}
+.tile span{font-size:.86rem;color:var(--ink2)}
+
+/* ---------- listing cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px}
+.card.ad{border:2px solid var(--gold);background:linear-gradient(0deg,var(--gold-bg),var(--gold-bg)) , var(--surface)}
+.card .top{display:flex;align-items:flex-start;gap:12px}
+.avatar{width:52px;height:52px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:"Archivo";font-weight:800;font-size:1.15rem;flex:none}
+.card h3{font-size:1.18rem;font-weight:800}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{text-decoration:underline}
+.card .svc{font-weight:700;color:var(--navy2);font-size:.92rem}
+@media (prefers-color-scheme: dark){.card .svc{color:#7db1e8}}
+.card .meta{color:var(--ink2);font-size:.9rem;display:flex;flex-wrap:wrap;gap:4px 16px}
+.card p.about{color:var(--ink2);font-size:.95rem;margin:0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto;flex:none}
+.badge{font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.badge-sponsored{background:var(--gold);color:#231800}
+.badge-free{background:var(--surface2);color:var(--ink2);border:1px solid var(--line)}
+.badge-open{background:var(--good-bg);color:var(--good)}
+.card .actions{display:flex;gap:10px;margin-top:auto;padding-top:8px;flex-wrap:wrap}
+.callbtn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;border-radius:10px;padding:11px 18px}
+.callbtn:hover{background:#d14f16}
+.callbtn svg{width:17px;height:17px}
+.viewbtn{display:inline-flex;align-items:center;text-decoration:none;font-weight:700;border:1.5px solid var(--line);border-radius:10px;padding:10px 16px;color:var(--ink)}
+.viewbtn:hover{border-color:var(--ink2)}
+.webbtn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;text-decoration:none;font-weight:800;border-radius:10px;padding:11px 18px}
+.webbtn:hover{background:var(--navy2)}
+.webbtn svg{width:17px;height:17px}
+.weblink{display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:.92rem;color:var(--ink2);text-decoration:underline;padding:11px 4px}
+.big-call .webbtn{justify-content:center;font-size:1.02rem;padding:13px}
+.big-call .weblink{justify-content:center}
+
+.empty{border:1.5px dashed var(--line);border-radius:var(--radius);padding:36px 24px;text-align:center;background:var(--surface)}
+.empty h3{font-size:1.15rem;margin-bottom:6px}
+.empty p{color:var(--ink2);margin:0 0 16px}
+
+/* ---------- how it works ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.step .num{font-family:"Archivo";font-weight:900;font-size:2rem;color:var(--accent);line-height:1}
+.step h3{margin:10px 0 6px;font-size:1.08rem}
+.step p{color:var(--ink2);margin:0;font-size:.95rem}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--navy);color:#eef3f9;border-radius:18px;padding:38px 34px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.cta-band h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800}
+.cta-band p{color:#c6d4e4;margin:8px 0 0;max-width:520px}
+.cta-band .btn{margin-left:auto}
+@media (max-width:640px){.cta-band .btn{margin-left:0}}
+
+/* ---------- filters / browse ---------- */
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.filters label{font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);display:flex;flex-direction:column;gap:6px;flex:1;min-width:160px}
+.filters select,.filters input{padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;background:var(--surface);text-transform:none;letter-spacing:0;font-size:.98rem;font-weight:500;color:var(--ink)}
+.group-label{display:flex;align-items:center;gap:10px;margin:26px 0 14px}
+.group-label h3{font-size:1.05rem;font-weight:800}
+.group-label .rule{flex:1;height:1px;background:var(--line)}
+
+/* ---------- detail ---------- */
+.detail-head{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;margin-top:28px}
+.detail-head .top{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.detail-head .avatar{width:64px;height:64px;font-size:1.4rem;border-radius:14px}
+.detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:820px){.detail-grid{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.panel h3{font-size:1rem;font-weight:800;margin-bottom:10px}
+.panel dl{margin:0;display:grid;gap:10px}
+.panel dt{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.panel dd{margin:2px 0 0;font-weight:600}
+.big-call{display:flex;flex-direction:column;gap:10px;align-items:stretch;text-align:center}
+.big-call .callbtn{justify-content:center;font-size:1.08rem;padding:15px}
+.big-call .num{font-family:"Archivo";font-weight:800;font-size:1.25rem}
+.report{font-size:.85rem;color:var(--ink2)}
+
+/* ---------- single ad slot (free listing detail pages only) ---------- */
+.ad-slot{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;position:relative}
+.ad-slot .ad-label{position:absolute;top:12px;right:14px;font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.ad-slot video{width:100%;max-height:280px;border-radius:10px;background:#000}
+.ad-slot .ad-ph{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.ad-slot .ad-ph .play{width:52px;height:52px;border-radius:50%;background:var(--gold-bg);border:1.5px solid var(--gold);display:grid;place-items:center;flex:none}
+.ad-slot .ad-ph .play svg{width:20px;height:20px;fill:var(--gold)}
+.ad-slot h3{font-size:1.02rem;font-weight:800;margin:0 0 4px}
+.ad-slot p{color:var(--ink2);margin:0;font-size:.93rem;max-width:520px}
+.ad-slot .btn{margin-left:auto}
+@media (max-width:640px){.ad-slot .btn{margin-left:0}}
+.crumbs{font-size:.88rem;color:var(--ink2);margin-top:26px}
+.crumbs a{color:var(--ink2)}
+
+/* ---------- forms ---------- */
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;max-width:680px}
+.form-card h2{font-size:1.5rem;font-weight:800;margin-bottom:6px}
+.form-card>p{color:var(--ink2);margin:0 0 20px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){.frow{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-weight:700;font-size:.9rem}
+.field label .req{color:var(--accent)}
+.field input,.field select,.field textarea{padding:12px;border:1.5px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);width:100%}
+.field textarea{min-height:110px;resize:vertical}
+.field .hint{font-size:.82rem;color:var(--ink2)}
+.success{display:none;background:var(--good-bg);border:1.5px solid var(--good);border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.success.show{display:block}
+.success b{color:var(--good)}
+
+/* ---------- tiers ---------- */
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:820px){.tiers{grid-template-columns:1fr}}
+.tier{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+.tier.hot{border:2px solid var(--gold)}
+.tier h3{font-size:1.25rem;font-weight:800}
+.tier .price{font-family:"Archivo";font-weight:900;font-size:1.7rem;margin:8px 0 4px}
+.tier ul{margin:14px 0 20px;padding:0;list-style:none;display:grid;gap:9px}
+.tier li{display:flex;gap:9px;font-size:.96rem}
+.tier li svg{width:18px;height:18px;flex:none;margin-top:2px;stroke:var(--good)}
+
+/* ---------- prose ---------- */
+.prose{max-width:720px}
+.prose h2{font-size:1.7rem;font-weight:800;margin-bottom:14px}
+.prose h3{font-size:1.1rem;margin:24px 0 8px}
+.prose p{color:var(--ink2)}
+.prose p b{color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer.site{border-top:1px solid var(--line);background:var(--surface);margin-top:20px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:26px;padding:40px 0 30px}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{font-family:"Archivo";font-size:.95rem;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer ul a{color:var(--ink2);text-decoration:none;font-size:.93rem}
+footer ul a:hover{color:var(--ink);text-decoration:underline}
+footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
+.fbottom{border-top:1px solid var(--line);padding:16px 0 22px;font-size:.85rem;color:var(--ink2);display:flex;gap:8px 20px;flex-wrap:wrap}
+
+/* ---------- listing pool ---------- */
+.kits{display:grid;gap:18px}
+.kit{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+.kit-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.kit-head .ic{width:46px;height:46px;border-radius:11px;background:var(--surface2);display:grid;place-items:center;flex:none}
+.kit-head .ic svg{width:25px;height:25px;stroke:var(--navy2)}
+@media (prefers-color-scheme: dark){.kit-head .ic svg{stroke:#7db1e8}}
+.kit-head h3{font-size:1.25rem;font-weight:800}
+.kit-head .sub{color:var(--ink2);font-size:.9rem}
+.kit-cols{display:grid;grid-template-columns:270px 1fr;gap:22px}
+@media (max-width:820px){.kit-cols{grid-template-columns:1fr}}
+.kit-photo{border:1.5px dashed var(--line);border-radius:var(--radius);background:var(--surface2);min-height:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:18px;color:var(--ink2)}
+.kit-photo svg{width:34px;height:34px;stroke:var(--ink2)}
+.kit-photo b{color:var(--ink);font-family:"Archivo";font-size:.95rem}
+.kit-photo span{font-size:.82rem}
+.kit-label{font-size:.76rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);margin:0 0 7px}
+.title-ex{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-weight:700}
+.variant{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:10px}
+.variant .vtag{font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+.variant p{margin:0;color:var(--ink2);font-size:.95rem}
+.variant .use-v{margin-top:10px;background:none;border:0;color:var(--navy2);font-weight:700;cursor:pointer;padding:0;font-size:.9rem;text-decoration:underline}
+@media (prefers-color-scheme: dark){.variant .use-v{color:#7db1e8}}
+.kit .use-kit{margin-top:18px}
+.kit-note{border:1px solid var(--line);background:var(--surface2);border-radius:10px;padding:12px 14px;margin-top:14px;font-size:.93rem}
+.kit-note b{font-family:"Archivo"}
+
+/* ---------- coverage ---------- */
+.cov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+@media (max-width:900px){.cov-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.cov-grid{grid-template-columns:1fr}}
+.cov{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:3px}
+.cov .st{font-family:"Archivo";font-weight:800;font-size:.98rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cov .hub{color:var(--ink2);font-size:.92rem}
+.cov .prio-note{font-size:.85rem;color:var(--ink2)}
+.cov .prio-note b{color:var(--gold)}
+.notice{border:1.5px solid var(--gold);background:var(--gold-bg);border-radius:12px;padding:15px 17px;font-size:.94rem;margin-bottom:18px}
+.notice p{margin:0}
+.notice p + p{margin-top:8px}
+
+/* ---------- blog ---------- */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.blog-grid{grid-template-columns:1fr}}
+.post-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px}
+.post-card:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.post-card h3{font-size:1.12rem;font-weight:800;line-height:1.3}
+.post-card h3 a{color:var(--ink);text-decoration:none}
+.post-card h3 a:hover{text-decoration:underline}
+.post-card p{color:var(--ink2);font-size:.94rem;margin:0}
+.post-card .read{margin-top:auto;font-weight:700;text-decoration:none;padding-top:4px}
+.post-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.84rem;color:var(--ink2)}
+.cat{font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--ink)}
+.article-wrap{max-width:760px}
+.article-wrap h1{font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:900;letter-spacing:-.015em;margin:14px 0 10px}
+.article-photo{border:1.5px dashed var(--line);border-radius:var(--radius);background:var(--surface2);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;color:var(--ink2);margin:22px 0 28px}
+.article-photo svg{width:40px;height:40px;stroke:var(--ink2)}
+.article-photo b{color:var(--ink);font-family:"Archivo";font-size:1rem}
+.article-photo span{font-size:.86rem}
+.article-body{font-size:1.05rem;line-height:1.7}
+.article-body p{margin:0 0 16px}
+.article-body h3{font-family:"Archivo";font-size:1.28rem;font-weight:800;margin:30px 0 10px;line-height:1.25}
+.article-body ul{margin:0 0 16px;padding-left:22px;display:grid;gap:7px}
+.article-body li::marker{color:var(--accent)}
+.cta-box{background:var(--navy);color:#eef3f9;border-radius:18px;padding:28px;margin-top:38px}
+.cta-box h3{font-size:1.3rem;font-weight:800;margin:0 0 8px}
+.cta-box p{color:#c6d4e4;margin:0 0 18px;max-width:540px}
+.cta-box .acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cta-box .seelink{color:#ffb287;font-weight:700;text-decoration:none}
+.cta-box .seelink:hover{text-decoration:underline}
+
+/* ---------- partner dashboard (preview) ---------- */
+.preview-banner{border:2px solid var(--gold);background:var(--gold-bg);border-radius:12px;padding:15px 17px;font-size:.98rem;margin-bottom:20px}
+.preview-banner b{font-family:"Archivo"}
+.live-strip{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1.5px solid var(--good);border-radius:12px;padding:13px 16px;margin-bottom:20px;font-size:.95rem}
+.live-dot{width:11px;height:11px;border-radius:50%;background:var(--good);flex:none;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion: reduce){.live-dot{animation:none}}
+.live-strip .elapsed{font-family:"Archivo";font-weight:800;font-variant-numeric:tabular-nums}
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:26px}
+@media (max-width:900px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.stat-grid{grid-template-columns:1fr 1fr}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.stat .sv{font-family:"Archivo";font-weight:900;font-size:1.5rem;line-height:1.1}
+.stat .sl{font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);margin-top:4px}
+.calls-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.calls-table{width:100%;border-collapse:collapse;font-size:.93rem}
+.calls-table th{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);text-align:left;padding:13px 14px;border-bottom:1.5px solid var(--line);background:var(--surface2)}
+.calls-table td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.calls-table tr:last-child td{border-bottom:0}
+.calls-table .amt{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calls-table .mine{font-weight:800;color:var(--good);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.chip-billable{background:var(--good-bg);color:var(--good)}
+.chip-junk{background:var(--surface2);color:var(--ink2);border:1px solid var(--line)}
+.chip-fake{background:#fbe7e0;color:#b23a12}
+@media (prefers-color-scheme: dark){.chip-fake{background:#3a1d12;color:#f0936d}}
+.rec-btn{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:0;border-radius:9px;padding:8px 12px;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.rec-btn:hover{background:var(--navy2)}
+.rec-btn svg{width:13px;height:13px;fill:#fff}
+.rec-btn.off{background:var(--surface2);color:var(--ink2);cursor:default}
+.rec-note{display:none;margin-top:12px;font-size:.9rem;color:var(--ink2)}
+.rec-note.show{display:block}
+@media (max-width:900px){
+  .calls-table thead{display:none}
+  .calls-table,.calls-table tbody,.calls-table tr,.calls-table td{display:block;width:100%}
+  .calls-table tr{padding:10px 4px;border-bottom:1.5px solid var(--line)}
+  .calls-table tr:last-child{border-bottom:0}
+  .calls-table td{border-bottom:0;padding:5px 14px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .calls-table td::before{content:attr(data-label);font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+}
+
+.view{display:none}
+.view.active{display:block}
+.page-head{padding:40px 0 6px}
+.page-head h1,.page-head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;letter-spacing:-.015em}
+.page-head p{color:var(--ink2);max-width:620px;margin:10px 0 0}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="wrap hbar">
+    <!-- BRAND NAME: change the text below (and the BRAND constant in the script) to rename the site -->
+    <a class="brand" href="#/" aria-label="FixProsList — home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9h13v-9"/><path d="M14.5 12.2a2.6 2.6 0 1 0-3.4 3.4L8 18.7a1.4 1.4 0 0 0 2 2l3.1-3.1a2.6 2.6 0 0 0 1.4-3.4Z"/></svg>
+      </span>
+      <span>
+        <span class="name">Fix<em>Pros</em>List</span><br />
+        <span class="tag">Home Services Directory</span>
+      </span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav class="main" id="main-nav" aria-label="Main">
+      <a href="#/browse">Find a Pro</a>
+      <a href="#/blog">Blog</a>
+      <a href="#/listing-pool">Listing Pool</a>
+      <a href="#/advertise">Advertise</a>
+      <a href="#/post-a-job">Post a Job</a>
+      <a href="#/about">About</a>
+      <a class="btn btn-accent btn-sm" href="#/add-your-business">List Your Business — Free</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<div class="view" id="view-home">
+  <div class="hero">
+    <div class="wrap hero-in">
+      <h1>Find a local pro you can <span class="hl">actually reach.</span></h1>
+      <p class="lede">Search trusted home-service pros across the USA — or put your own business in front of homeowners who are ready to call.</p>
+      <form class="searchbar" id="hero-search">
+        <select id="hs-service" aria-label="Choose a service"></select>
+        <input id="hs-city" type="text" placeholder="City or ZIP — try “Miami”" aria-label="City or ZIP" />
+        <button class="btn btn-accent" type="submit">Search Pros</button>
+      </form>
+      <div class="hero-points">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#ffb287" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Every listing reviewed before it goes live</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#ffb287" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Free to list your business</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#ffb287" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Call pros directly — no middleman fees</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" style="padding-bottom:8px">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Browse by service</h2>
+          <p>Eight trades, one directory. Pick a service to see pros near you.</p>
+        </div>
+      </div>
+      <div class="tiles" id="service-tiles"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Advertised Pros</h2>
+          <p>Businesses that invest in being found first. Sponsored listings are always labeled.</p>
+        </div>
+        <a class="more" href="#/browse">Browse all pros →</a>
+      </div>
+      <div class="cards" id="home-advertised"></div>
+
+      <div class="sec-head" style="margin-top:48px">
+        <div>
+          <h2>Latest Listings</h2>
+          <p>The newest free Published listings — separate from the Sponsored pros above.</p>
+        </div>
+      </div>
+      <div class="cards" id="home-latest"></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>How it works</h2>
+          <p>For homeowners — three steps, no account needed.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Search</h3><p>Choose your service and city. See advertised pros first, then every published listing.</p></div>
+        <div class="step"><div class="num">2</div><h3>Compare</h3><p>Check services, service areas and hours. Every listing is reviewed by a person before it appears here.</p></div>
+        <div class="step"><div class="num">3</div><h3>Call</h3><p>Tap Call Now and talk to the pro directly. You deal with the business itself — we never take advance payments.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>Run a home-service business?</h2>
+          <p>Get listed where homeowners are already searching. A Published listing is free, forever — and takes about two minutes.</p>
+        </div>
+        <a class="btn btn-accent" href="#/add-your-business">List Your Business Free</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= BROWSE ================= -->
+<div class="view" id="view-browse">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Browse Pros</h2>
+      <p>Advertised pros are pinned to the top and clearly labeled Sponsored. Published (free) listings follow below.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <form class="filters" id="browse-filters">
+        <label>Service
+          <select id="bf-service"></select>
+        </label>
+        <label>City
+          <input id="bf-city" type="text" placeholder="e.g. Miami Beach" />
+        </label>
+        <label style="flex:0 0 auto;justify-content:end">
+          <button class="btn btn-navy" type="submit">Apply Filters</button>
+        </label>
+      </form>
+      <div id="browse-results"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= LISTING POOL ================= -->
+<div class="view" id="view-pool">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Listing Pool</h2>
+      <p>Ready-made listing kits for every service we cover. <b>Pick a kit, add your city, publish</b> — approved partners get free access to the pool.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="notice" style="max-width:840px">
+        <p><b>How the pool works:</b> each kit gives you a ready listing title, three description versions and a photo slot, so your listing looks professional from day one. Choose the description version you like — the versions exist so partners don’t all publish identical text. Replace <b>[City]</b> and <b>[Business Name]</b> with your own details before you submit.</p>
+        <p><b>Videos are not included in the kits</b> — kits cover your title, description and photo slot only. And one kit means one listing: the one-listing-per-business rule below still applies.</p>
+      </div>
+      <div class="kits" id="pool-kits"></div>
+
+      <div class="sec-head" style="margin-top:52px">
+        <div>
+          <h2>Coverage &amp; Target Locations</h2>
+          <p>Our partner networks cover <b>all 50 US states</b> — there is no restricted state list. Each state has <b>one hub city</b>: the state’s largest metro, used as the anchor for listings in that state. A hub listing is a service-area listing — it serves the hub city and the area around it, roughly a <b>60 km (about 37-mile) radius</b>. When you use a kit, pick your state and its hub below, and replace <b>[City]</b> in the kit with that hub city.</p>
+        </div>
+      </div>
+      <p style="color:var(--ink2);max-width:720px;margin:0">Metros marked <span class="badge badge-sponsored">★ Priority</span> are where our networks see their strongest demand and payouts — if you’re choosing where to start, start there.</p>
+      <div class="cov-grid" id="pool-coverage"></div>
+
+      <div class="cta-band" style="margin-top:40px">
+        <div>
+          <h2>Partners: track every call, live</h2>
+          <p>Har partner ko apna dashboard milta hai — sirf us ki apni calls, live call ka status, recordings, aur poora hisaab: company amount, 20% platform cut, aur tumhara 80% hissa, sab samne.</p>
+        </div>
+        <a class="btn btn-accent" href="#/partner-dashboard">Partner Dashboard — Preview</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= PARTNER DASHBOARD (PREVIEW) ================= -->
+<div class="view" id="view-partner">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Partner Dashboard</h2>
+      <p>Login ke baad har partner ko <b>sirf apni</b> calls, apna hisaab aur apni recordings dikhti hain — kisi aur partner ka data kabhi nahi.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="preview-banner" role="note">
+        <b>Preview — namuna (sample).</b> Asal calls aur hisaab site LIVE hone ke baad yahan ayenge. Neeche ka saara data sample hai — asal calls nahi hain.
+      </div>
+
+      <div class="live-strip" aria-label="Sample live call">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span><b>LIVE — call chal rahi hai</b> (sample) · Plumbing · Miami, FL · tumhare tracking number se aayi hui call</span>
+        <span class="elapsed" id="live-elapsed">00:47</span>
+      </div>
+
+      <div class="stat-grid" aria-label="Aaj ka hisaab — sample">
+        <div class="stat"><div class="sv">12</div><div class="sl">Aaj ki calls</div></div>
+        <div class="stat"><div class="sv">8</div><div class="sl">Billable calls</div></div>
+        <div class="stat"><div class="sv">3</div><div class="sl">Junk calls</div></div>
+        <div class="stat"><div class="sv">$612.00</div><div class="sl">Meri kamai (aaj)</div></div>
+        <div class="stat"><div class="sv">$1,240.00</div><div class="sl">Kul hisaab pending</div></div>
+      </div>
+
+      <div class="sec-head">
+        <div>
+          <h2>Meri Calls</h2>
+          <p>Sample rows — har call ka waqt, doraniya (duration), status aur poora hisaab. “Call suno” se tum apni call ki recording sun sakte ho taake pata chale call pe kya baat hui aur kya deal hui.</p>
+        </div>
+      </div>
+      <div class="calls-wrap">
+        <table class="calls-table">
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Service</th>
+              <th scope="col">City</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Status</th>
+              <th scope="col">Company amount</th>
+              <th scope="col">20% platform</th>
+              <th scope="col">Mera hissa (80%)</th>
+              <th scope="col">Recording</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Time">11:42 AM</td>
+              <td data-label="Service">Plumbing</td>
+              <td data-label="City">Miami, FL</td>
+              <td data-label="Duration">2m 34s</td>
+              <td data-label="Status"><span class="chip chip-billable">Billable</span></td>
+              <td data-label="Company amount" class="amt">$95.00</td>
+              <td data-label="20% platform" class="amt">−$19.00</td>
+              <td data-label="Mera hissa (80%)" class="mine">$76.00</td>
+              <td data-label="Recording"><button type="button" class="rec-btn" data-rec="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5Z"/></svg> Call suno</button></td>
+            </tr>
+            <tr>
+              <td data-label="Time">10:17 AM</td>
+              <td data-label="Service">HVAC</td>
+              <td data-label="City">Orlando, FL</td>
+              <td data-label="Duration">3m 12s</td>
+              <td data-label="Status"><span class="chip chip-billable">Billable</span></td>
+              <td data-label="Company amount" class="amt">$110.00</td>
+              <td data-label="20% platform" class="amt">−$22.00</td>
+              <td data-label="Mera hissa (80%)" class="mine">$88.00</td>
+              <td data-label="Recording"><button type="button" class="rec-btn" data-rec="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5Z"/></svg> Call suno</button></td>
+            </tr>
+            <tr>
+              <td data-label="Time">09:03 AM</td>
+              <td data-label="Service">Roofing</td>
+              <td data-label="City">Dallas, TX</td>
+              <td data-label="Duration">1m 48s</td>
+              <td data-label="Status"><span class="chip chip-billable">Billable</span></td>
+              <td data-label="Company amount" class="amt">$150.00</td>
+              <td data-label="20% platform" class="amt">−$30.00</td>
+              <td data-label="Mera hissa (80%)" class="mine">$120.00</td>
+              <td data-label="Recording"><button type="button" class="rec-btn" data-rec="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5Z"/></svg> Call suno</button></td>
+            </tr>
+            <tr>
+              <td data-label="Time">08:26 AM</td>
+              <td data-label="Service">Electrical</td>
+              <td data-label="City">Houston, TX</td>
+              <td data-label="Duration">0m 38s</td>
+              <td data-label="Status"><span class="chip chip-junk">Junk</span></td>
+              <td data-label="Company amount" class="amt">$0.00</td>
+              <td data-label="20% platform" class="amt">$0.00</td>
+              <td data-label="Mera hissa (80%)" class="mine">$0.00</td>
+              <td data-label="Recording"><button type="button" class="rec-btn" data-rec="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5Z"/></svg> Call suno</button></td>
+            </tr>
+            <tr>
+              <td data-label="Time">Kal · 6:51 PM</td>
+              <td data-label="Service">Garage Doors</td>
+              <td data-label="City">Phoenix, AZ</td>
+              <td data-label="Duration">1m 05s</td>
+              <td data-label="Status"><span class="chip chip-fake">Fake — rejected</span></td>
+              <td data-label="Company amount" class="amt">$0.00</td>
+              <td data-label="20% platform" class="amt">$0.00</td>
+              <td data-label="Mera hissa (80%)" class="mine">$0.00</td>
+              <td data-label="Recording"><button type="button" class="rec-btn" data-rec="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5Z"/></svg> Call suno</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="rec-note" id="rec-note" role="status">Ye preview (namuna) hai — yahan koi asal recording nahi chalti. Site LIVE hone ke baad isi button se tum apni asal call ki recording sun sako ge.</p>
+
+      <div class="notice" style="margin-top:24px;max-width:840px">
+        <p><b>Shaffafiyat (transparency):</b> Har partner sirf apni calls dekhta hai. Company ki asal amount, kata hua 20%, aur tumhara hissa — sab samne hota hai. Fake call = hisaab khatam (Partner Rules).</p>
+        <p>Junk calls (bohat chhoti ya ghalat-number calls) pe koi paisa nahi banta aur koi saza bhi nahi — lekin <b>fake call</b> pakri jaye to contract aur saara pending hisaab khatam ho jata hai.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= LISTING DETAIL (JS-rendered) ================= -->
+<div class="view" id="view-detail"><div class="wrap" id="detail-root"></div></div>
+
+<!-- ================= SERVICE × CITY (JS-rendered) ================= -->
+<div class="view" id="view-landing"><div class="wrap" id="landing-root"></div></div>
+
+<!-- ================= BLOG INDEX ================= -->
+<div class="view" id="view-blog">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>The FixProsList Blog</h2>
+      <p>Straight-talk guides for homeowners: what jobs really involve, what drives the price, and how to decide with confidence — written by the team behind the directory.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="blog-grid" id="blog-grid"></div>
+      <div class="cta-band" style="margin-top:40px">
+        <div>
+          <h2>Skip the reading — talk to a pro</h2>
+          <p>Every guide ends the same way: with a real local pro you can call directly. Browse the directory or post your job and let pros come to you.</p>
+        </div>
+        <a class="btn btn-accent" href="#/browse">Find a Pro</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= BLOG ARTICLE (JS-rendered) ================= -->
+<div class="view" id="view-article"><div class="wrap" id="article-root"></div></div>
+
+<!-- ================= ADD YOUR BUSINESS ================= -->
+<div class="view" id="view-add">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Add Your Business</h2>
+      <p>A <b>Published listing is completely free</b> — no card, no trial, no catch. Tell us about your business and we’ll review it before it goes live.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="form-card">
+        <div class="success" id="add-success" role="status">
+          <b>Received — every listing is reviewed before it goes live.</b><br />
+          Thanks for submitting. We review each business by hand; if anything is missing we’ll email you at the address you gave us.
+        </div>
+        <form id="add-form" novalidate>
+          <div class="field">
+            <label for="af-name">Business name <span class="req">*</span></label>
+            <input id="af-name" required autocomplete="organization" placeholder="e.g. Smith &amp; Sons Plumbing" />
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="af-contact">Contact person <span class="req">*</span></label>
+              <input id="af-contact" required autocomplete="name" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label for="af-email">Email <span class="req">*</span></label>
+              <input id="af-email" type="email" required autocomplete="email" placeholder="you@yourbusiness.com" />
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="af-phone">Business phone <span class="req">*</span></label>
+              <input id="af-phone" type="tel" required autocomplete="tel" placeholder="(555) 123-4567" />
+              <span class="hint">This is the number customers will call from your listing.</span>
+            </div>
+            <div class="field">
+              <label for="af-service">Service <span class="req">*</span></label>
+              <select id="af-service" required></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="af-website">Business website</label>
+            <input id="af-website" type="url" inputmode="url" autocomplete="url" placeholder="https://yourbusiness.com" />
+            <span class="hint">Optional. Published (free) listings show it as a plain link; Advertised listings get a prominent “Visit Website” button.</span>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="af-city">City <span class="req">*</span></label>
+              <input id="af-city" required placeholder="e.g. Austin" />
+            </div>
+            <div class="field">
+              <label for="af-state">State <span class="req">*</span></label>
+              <input id="af-state" required maxlength="2" placeholder="e.g. TX" style="text-transform:uppercase" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="af-desc">Short description <span class="req">*</span></label>
+            <textarea id="af-desc" required placeholder="What do you do, how long have you done it, and what makes customers choose you?"></textarea>
+          </div>
+          <div class="notice">
+            <p><b>One listing per business.</b> We check name + phone + city before publishing — duplicates are removed. If your business already appears here, <a href="mailto:info@easytofix.homes?subject=Claim%20my%20listing">claim it</a> instead of adding it again.</p>
+          </div>
+          <button class="btn btn-accent" type="submit" style="width:100%;justify-content:center">Submit My Free Listing</button>
+          <p class="hint" style="margin:12px 0 0;font-size:.85rem;color:var(--ink2)">Want top placement instead? See the <a href="#/advertise">Advertise page</a>. By submitting you confirm the details are accurate and the business is yours to list.</p>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= ADVERTISE ================= -->
+<div class="view" id="view-advertise">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Advertise with FixProsList</h2>
+      <p>Two ways to be listed. Published is free for every legitimate business. Advertised puts you first — where the calls happen.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="tiers">
+        <div class="tier">
+          <span class="badge badge-free">Published</span>
+          <div class="price">Free</div>
+          <p style="color:var(--ink2);margin:0">For every real home-service business.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Full listing with your services, area and hours</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Click-to-call button with your number</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Your website shown as a plain link on your listing</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Appears in search and service × city pages</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Reviewed before publishing — like every listing</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> One short video ad (5–7 seconds) may appear below your listing</li>
+          </ul>
+          <a class="btn btn-ghost" href="#/add-your-business" style="width:100%;justify-content:center">List Free</a>
+        </div>
+        <div class="tier hot">
+          <span class="badge badge-sponsored">Advertised</span>
+          <div class="price">Paid placement</div>
+          <p style="color:var(--ink2);margin:0">For pros who want the first call, not the fifth.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><b>Top placement</b> in your service and city — above free listings</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><b>Sponsored badge</b> and highlighted card that stands out</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Featured on the home page “Advertised Pros” section</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><b>Prominent “Visit Website” button</b> on your listing card and detail page, sending homeowners straight to your own website</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><b>No third-party ads on your listing</b> — Advertised listings carry no third-party ads, ever. Free listings show one short video ad below the listing; yours never will</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> More visibility means more calls to your business line</li>
+          </ul>
+          <a class="btn btn-accent" href="mailto:info@easytofix.homes?subject=Advertise%20on%20FixProsList" style="width:100%;justify-content:center">Contact Us to Advertise</a>
+        </div>
+      </div>
+      <p style="color:var(--ink2);max-width:680px;margin-top:22px">Pricing depends on your service and market, so we quote it personally — no invented price list, no pressure. Email <a href="mailto:info@easytofix.homes">info@easytofix.homes</a> with your business name, service and city, and we’ll reply with options. Sponsored listings are always labeled, so homeowners can trust what they see.</p>
+    </section>
+  </div>
+</div>
+
+<!-- ================= POST A JOB ================= -->
+<div class="view" id="view-job">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Post a Job</h2>
+      <p>Tell us what needs doing. <b>Local pros may contact you about your job</b> — you choose who to hire, and you pay the pro directly.</p>
+    </div>
+    <section class="block" style="padding-top:26px">
+      <div class="form-card">
+        <div class="success" id="job-success" role="status">
+          <b>Job received.</b><br />
+          Thanks — your job details have been noted. Local pros in the directory may contact you about it. Please don’t pay anyone in advance; pay your pro directly when the work is agreed or done.
+        </div>
+        <form id="job-form" novalidate>
+          <div class="frow">
+            <div class="field">
+              <label for="jf-name">Your name <span class="req">*</span></label>
+              <input id="jf-name" required autocomplete="name" placeholder="Full name" />
+            </div>
+            <div class="field">
+              <label for="jf-phone">Phone <span class="req">*</span></label>
+              <input id="jf-phone" type="tel" required autocomplete="tel" placeholder="(555) 123-4567" />
+              <span class="hint">Pros will call this number about your job.</span>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="jf-service">Service needed <span class="req">*</span></label>
+              <select id="jf-service" required></select>
+            </div>
+            <div class="field">
+              <label for="jf-city">City <span class="req">*</span></label>
+              <input id="jf-city" required placeholder="e.g. Miami" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="jf-desc">Job description <span class="req">*</span></label>
+            <textarea id="jf-desc" required placeholder="What’s the problem or project? Any timing or access details pros should know?"></textarea>
+          </div>
+          <button class="btn btn-accent" type="submit" style="width:100%;justify-content:center">Post My Job</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div class="view" id="view-about">
+  <div class="wrap">
+    <section class="block prose">
+      <h2>About FixProsList</h2>
+      <p><b>FixProsList is a directory with a simple idea:</b> homeowners should be able to find a local home-service pro and call them directly — and honest businesses should be able to get listed without paying for the privilege.</p>
+      <p>Every listing on this site is <b>reviewed by a person before it is published</b>. Free “Published” listings carry the same review as paid “Advertised” ones; advertising buys placement and a Sponsored badge, never a pass on review.</p>
+      <p>We cover eight trades — plumbing, electrical, garage doors, roofing, appliances, HVAC, painting, and 24/7 emergency services — and we are growing city by city. If your city shows no pros yet, that space is honest and empty on purpose: we would rather show nothing than invent businesses.</p>
+      <h3>Talk to us</h3>
+      <p>Questions, corrections, or advertising: <a href="mailto:info@easytofix.homes">info@easytofix.homes</a></p>
+    </section>
+  </div>
+</div>
+
+<!-- ================= TERMS ================= -->
+<div class="view" id="view-terms">
+  <div class="wrap">
+    <section class="block prose">
+      <h2>Terms of Use</h2>
+      <p><b>What this site is.</b> FixProsList is a directory that connects customers with independent home-service businesses. We are not the service provider, and we are not a party to any agreement you make with a pro.</p>
+      <p><b>No advance payments.</b> This platform never takes advance payments for work. Pay your chosen pro directly, under the terms you agree with them.</p>
+      <p><b>Listings.</b> Businesses are responsible for the accuracy of their listing details. Every listing is reviewed before publishing, and we may edit or remove a listing that is inaccurate, misleading, or not a genuine home-service business.</p>
+      <p><b>One listing per business.</b> We check name + phone + city before publishing — duplicates are removed. If your business already appears here, claim it instead of adding it again.</p>
+      <p><b>Sponsored placement.</b> Listings marked “Sponsored” are paid placements. Sponsored status affects position and highlighting only — it is not an endorsement or a guarantee of work quality.</p>
+      <p><b>Your responsibility.</b> Verify licensing, insurance, and references with the pro before hiring, as requirements vary by state and trade.</p>
+      <p><b>Job posts.</b> By posting a job you agree that pros listed in the directory may contact you about that job at the number you provide.</p>
+    </section>
+  </div>
+</div>
+
+<!-- ================= PRIVACY ================= -->
+<div class="view" id="view-privacy">
+  <div class="wrap">
+    <section class="block prose">
+      <h2>Privacy Policy</h2>
+      <p><b>What we collect.</b> Only what the forms on this site ask for: business details from owners who list, and contact details from customers who post a job.</p>
+      <p><b>How we use it.</b> Business details are used to review and publish your listing. Job details and your phone number are shared only with pros who may be able to do the job, so they can contact you about it.</p>
+      <p><b>What we don’t do.</b> We don’t sell personal information, and we don’t ask for or take payments through this site.</p>
+      <p><b>Removal and corrections.</b> Email <a href="mailto:info@easytofix.homes">info@easytofix.homes</a> to correct or remove your listing or job post.</p>
+    </section>
+  </div>
+</div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>FixProsList</h4>
+        <p class="fine">A US home-services directory for homeowners and local pros. <b>Listings are reviewed before publishing.</b></p>
+        <p class="fine" style="margin-top:10px">This platform connects customers and independent pros. It does not perform the work and <b>never takes advance payments</b> — you always pay your pro directly.</p>
+        <p class="fine" style="margin-top:10px">Contact: <a href="mailto:info@easytofix.homes">info@easytofix.homes</a></p>
+      </div>
+      <div>
+        <h4>Homeowners</h4>
+        <ul>
+          <li><a href="#/browse">Find a Pro</a></li>
+          <li><a href="#/post-a-job">Post a Job</a></li>
+          <li><a href="#/miami/plumbing">Plumbers in Miami, FL</a></li>
+          <li><a href="#/miami/emergency">24/7 Emergency in Miami, FL</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Businesses</h4>
+        <ul>
+          <li><a href="#/add-your-business">Add Your Business — Free</a></li>
+          <li><a href="#/listing-pool">Listing Pool — Ready Kits</a></li>
+          <li><a href="#/partner-dashboard">Partner Dashboard</a></li>
+          <li><a href="#/advertise">Advertise With Us</a></li>
+          <li><a href="#/miami/hvac">HVAC Pros in Miami, FL</a></li>
+          <li><a href="#/miami/roofing">Roofers in Miami, FL</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#/about">About</a></li>
+          <li><a href="#/blog">Blog — Homeowner Guides</a></li>
+          <li><a href="#/terms">Terms of Use</a></li>
+          <li><a href="#/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 FixProsList. All rights reserved.</span>
+      <span>Sponsored listings are paid placements and are always labeled.</span>
+      <span>One listing per business — duplicates are removed.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   BRAND — rename the site here (and in the header markup).
+   ============================================================ */
+var BRAND = "FixProsList";
+
+/* ---------------- Data ---------------- */
+var SERVICES = [
+  { slug:"plumbing",   name:"Plumbing",       plural:"Plumbers",          blurb:"Leaks, drains, water heaters & repipes",
+    icon:'<path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18a2.1 2.1 0 1 0 3 3l5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7Z"/>' },
+  { slug:"electrical", name:"Electrical",     plural:"Electricians",      blurb:"Panels, wiring, lighting & troubleshooting",
+    icon:'<path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z"/>' },
+  { slug:"garage-doors", name:"Garage Doors", plural:"Garage Door Pros",  blurb:"Springs, openers, repairs & new doors",
+    icon:'<path d="M4 21V8.5L12 4l8 4.5V21"/><path d="M4 12.5h16M4 16.5h16M9.5 21v-4.5h5V21"/>' },
+  { slug:"roofing",     name:"Roofing",        plural:"Roofers",           blurb:"New roof installs & full replacements",
+    icon:'<path d="M3 11.5 12 4l9 7.5"/><path d="M6 10v10h12V10"/><path d="M6 14.5h12M12 14.5V20"/>' },
+  { slug:"appliances",  name:"Appliances",     plural:"Appliance Repair Pros", blurb:"Fridges, washers, ovens & dryers",
+    icon:'<rect x="6" y="3" width="12" height="18" rx="1.5"/><circle cx="12" cy="13.5" r="3.6"/><path d="M9 6.5h6"/>' },
+  { slug:"hvac",        name:"HVAC",           plural:"HVAC Pros",         blurb:"AC, heating, tune-ups & installs",
+    icon:'<circle cx="12" cy="12" r="2.2"/><path d="M12 9.8c0-2.8.8-4.8 2.6-6.4M14 12.9c2.7.7 4.4 2.1 5.4 4.3M10.2 13.4c-2.3 1.6-4.6 1.9-7 .9"/>' },
+  { slug:"painting",    name:"Painting",       plural:"Painters",          blurb:"Interior, exterior & cabinet painting",
+    icon:'<rect x="4" y="4" width="13" height="6" rx="1"/><path d="M17 7h3v5h-9v3"/><rect x="9.8" y="15" width="2.4" height="6" rx="1"/>' },
+  { slug:"emergency",   name:"24/7 Emergency", plural:"24/7 Emergency Pros", blurb:"Burst pipes, outages & urgent repairs — any hour",
+    icon:'<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 2M9 2.5h6"/>' }
+];
+function svc(slug){ for (var i=0;i<SERVICES.length;i++) if (SERVICES[i].slug===slug) return SERVICES[i]; return null; }
+
+/* Seed listings — the owner's real business only. Nothing else is invented. */
+var ABOUT_BASE = "EasyToFix Homes is a nationwide home-services dispatch company founded by Muhammad Mudassir Yaseen and based in Miami Beach, FL. One call connects you with a local pro — day or night.";
+var LISTINGS = [
+  { id:"easytofix-plumbing", business:"EasyToFix Homes", service:"plumbing", phone:"(844) 578-1727", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Plumbing services include leak detection and repair, drain cleaning, water heaters, repiping, and emergency shut-off help." },
+  { id:"easytofix-electrical", business:"EasyToFix Homes", service:"electrical", phone:"(866) 687-4517", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Electrical services include panel upgrades, wiring and rewiring, lighting installation, ceiling fans, and fault troubleshooting." },
+  { id:"easytofix-garage-doors", business:"EasyToFix Homes", service:"garage-doors", phone:"(831) 293-1196", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Garage door services include broken spring replacement, opener repair and installation, off-track doors, and new door installation." },
+  { id:"easytofix-roofing", business:"EasyToFix Homes", service:"roofing", phone:"(844) 211-0179", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Roofing services include leak repair, shingle replacement, full roof replacement, and storm-damage response." },
+  { id:"easytofix-appliances", business:"EasyToFix Homes", service:"appliances", phone:"(323) 831-1502", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Appliance services include refrigerator, washer, dryer, oven, and dishwasher repair for all major brands." },
+  { id:"easytofix-hvac", business:"EasyToFix Homes", service:"hvac", phone:"(858) 955-0579", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " HVAC services include AC repair and installation, heating and furnace service, tune-ups, and duct work." },
+  { id:"easytofix-painting", business:"EasyToFix Homes", service:"painting", phone:"(321) 478-0719", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Painting services include interior and exterior painting, cabinet refinishing, drywall patching, and color consultation." },
+  { id:"easytofix-emergency", business:"EasyToFix Homes", service:"emergency", phone:"(386) 296-6181", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " The 24/7 emergency dispatch line handles burst pipes, major leaks, power problems, and any urgent home repair — nights, weekends, and holidays." }
+];
+/* Every listing carries a website field. EasyToFix Homes' site is easytofix.homes;
+   future listings added above can set their own `website` value. */
+LISTINGS.forEach(function(l){ if (!l.website) l.website = "https://easytofix.homes"; });
+function listingById(id){ for (var i=0;i<LISTINGS.length;i++) if (LISTINGS[i].id===id) return LISTINGS[i]; return null; }
+
+/* -------- Single ad slot for FREE (Published) listing pages --------
+   Exactly ONE small ad appears on a free listing's detail page, after the
+   listing's own content. Advertised (Sponsored) pages get NO ad slot at all.
+   TO GO LIVE WITH THE REAL AD: put the owner's 5–7 second promo video file
+   in assets/ and set its path on the one line below, e.g.
+     var LISTING_AD_VIDEO = "assets/listing-ad.mp4";
+   Until then the slot shows a placeholder promoting the Advertised tier. */
+var LISTING_AD_VIDEO = "";
+function adSlotHTML(){
+  if (LISTING_AD_VIDEO){
+    return '<div class="ad-slot"><span class="ad-label">Ad</span>' +
+      '<video src="' + esc(LISTING_AD_VIDEO) + '" autoplay muted playsinline preload="metadata" aria-label="Advertisement"></video></div>';
+  }
+  return '<div class="ad-slot"><span class="ad-label">Ad</span><div class="ad-ph">' +
+    '<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></svg></span>' +
+    '<div><h3>Your business video could be here</h3>' +
+    '<p>A short 5–7 second video ad runs in this one spot on free listings. Go Advertised and your own listing page stays completely ad-free.</p></div>' +
+    '<a class="btn btn-navy btn-sm" href="#/advertise">Advertise With Us</a></div></div>';
+}
+function telHref(phone){ return "tel:+1" + phone.replace(/\D/g,""); }
+
+/* ---------------- Rendering helpers ---------------- */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+var PHONE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.25a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg>';
+
+var WEB_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>';
+/* Website link: Advertised listings get a prominent button (rel="sponsored nofollow");
+   Published (free) listings get a smaller plain link (rel="nofollow"). */
+function websiteHTML(l){
+  if (!l.website) return "";
+  if (l.tier === "advertised")
+    return '<a class="webbtn" href="' + esc(l.website) + '" target="_blank" rel="sponsored nofollow noopener">' + WEB_SVG + ' Visit Website</a>';
+  return '<a class="weblink" href="' + esc(l.website) + '" target="_blank" rel="nofollow noopener">Visit Website ↗</a>';
+}
+function cardHTML(l){
+  var s = svc(l.service);
+  var badge = l.tier === "advertised"
+    ? '<span class="badge badge-sponsored">★ Sponsored</span>'
+    : '<span class="badge badge-free">Published</span>';
+  return '<article class="card' + (l.tier==="advertised" ? " ad" : "") + '">' +
+    '<div class="top"><div class="avatar" aria-hidden="true">' + esc(l.business.charAt(0)) + '</div>' +
+    '<div><h3><a href="#/listing/' + l.id + '">' + esc(l.business) + '</a></h3>' +
+    '<div class="svc">' + esc(s.name) + ' · ' + esc(l.city) + ', ' + esc(l.state) + '</div></div>' +
+    '<div class="badges">' + badge + '</div></div>' +
+    '<div class="meta"><span>▸ ' + esc(l.area) + '</span><span>▸ ' + esc(l.hours) + '</span><span class="badge badge-open">Open Now</span></div>' +
+    '<p class="about">' + esc(l.about.length > 190 ? l.about.slice(0,190).trim() + "…" : l.about) + '</p>' +
+    '<div class="actions"><a class="callbtn" href="' + telHref(l.phone) + '">' + PHONE_SVG + ' Call ' + esc(l.phone) + '</a>' +
+    websiteHTML(l) +
+    '<a class="viewbtn" href="#/listing/' + l.id + '">View Listing</a></div></article>';
+}
+function emptyHTML(contextText){
+  return '<div class="empty"><h3>No pros listed here yet — be the first, it’s free</h3>' +
+    '<p>' + esc(contextText) + '</p>' +
+    '<a class="btn btn-accent" href="#/add-your-business">Add Your Business — Free</a></div>';
+}
+function groupHTML(title, items, emptyCtx){
+  var h = '<div class="group-label"><h3>' + esc(title) + '</h3><div class="rule"></div></div>';
+  if (!items.length) return h + emptyHTML(emptyCtx);
+  return h + '<div class="cards">' + items.map(cardHTML).join("") + '</div>';
+}
+
+/* ---------------- Listing Pool ----------------
+   One ready-made kit per service. Titles and descriptions use [City] and
+   [Business Name] placeholders — partners replace them with their own
+   details. Three description versions per kit so partners don't all publish
+   identical text. Videos are NOT part of the kits. */
+var POOL_KITS = [
+  { service:"plumbing",
+    note:"Calls qualify from 85 seconds.",
+    title:"Trusted Plumbers in [City] — Leaks, Drains & Water Heaters",
+    variants:[
+      "[Business Name] provides full-service plumbing in [City] and nearby areas. From leaking pipes and clogged drains to water heater installs, our pros arrive on time and fix it right the first time. Call today for a free estimate.",
+      "Looking for a reliable plumber in [City]? [Business Name] handles repairs, installations and emergencies — day or night. Honest pricing, clean work, and every job explained before we start.",
+      "Homeowners in [City] call [Business Name] when water goes where it shouldn't. Drain cleaning, repiping, fixture installs and 24/7 emergency help — one call and a local pro is on the way."
+    ] },
+  { service:"electrical",
+    title:"Licensed Electricians in [City] — Panels, Wiring & Lighting",
+    variants:[
+      "[Business Name] delivers safe, code-compliant electrical work across [City]. Panel upgrades, rewiring, lighting and troubleshooting — done by electricians who treat your home with care.",
+      "Flickering lights, or a panel that can't keep up? [Business Name] serves [City] with fast electrical repairs and installs, upfront pricing, and work that is tested and guaranteed.",
+      "From a single outlet to a full home rewire, [Business Name] is [City]'s call for electrical work done right. Emergency service available around the clock."
+    ] },
+  { service:"garage-doors",
+    title:"Garage Door Repair in [City] — Springs, Openers & New Doors",
+    variants:[
+      "Broken spring? Door off its track? [Business Name] repairs and installs garage doors throughout [City], with same-day service on most jobs. We service all major brands.",
+      "[Business Name] keeps [City] garage doors moving — opener repair, cable and spring replacement, and new door installs. Free on-site estimates, no pressure.",
+      "A stuck garage door shouldn't ruin your day. [Business Name] offers fast, affordable garage door service in [City] — evenings and weekends included."
+    ] },
+  { service:"roofing",
+    note:"New roof installs and replacements only — repair-only jobs do not qualify.",
+    title:"New Roof Installation & Roof Replacement in [City]",
+    variants:[
+      "[Business Name] installs brand-new roofs and full roof replacements across [City] and nearby areas. Complete tear-off and re-roofing with quality materials, clean job sites and written warranties — call today for a free estimate on your new roof.",
+      "Roof past its prime? [Business Name] specializes in complete roof replacement in [City] — we remove the old roof and install a new one built to last. Honest inspections and upfront pricing before any work begins.",
+      "A new roof is one of the best investments in your home. [Business Name] provides new roof installation and full replacements throughout [City], finished on schedule, with materials matched to your home and budget."
+    ] },
+  { service:"appliances",
+    title:"Appliance Repair in [City] — Fridges, Washers, Ovens & Dryers",
+    variants:[
+      "When an appliance stops, [Business Name] gets your [City] home running again. We repair refrigerators, washers, dryers, ovens and dishwashers from all major brands.",
+      "Fast appliance repair in [City] from [Business Name] — diagnosed honestly, fixed with quality parts, and priced before we start. No fix, no surprises.",
+      "A broken fridge can't wait. [Business Name] offers fast, friendly appliance repair throughout [City], with most repairs completed in a single visit."
+    ] },
+  { service:"hvac",
+    note:"Best results 7 AM – 7 PM in the caller's own time zone.",
+    title:"HVAC Service in [City] — AC Repair, Heating & Tune-Ups",
+    variants:[
+      "Stay comfortable year-round with [Business Name] in [City]. AC repair and installation, furnace service, seasonal tune-ups and duct work — done by certified technicians.",
+      "AC out on the hottest day of the year? [Business Name] responds fast across [City] with honest diagnostics and repairs that last. Maintenance plans available.",
+      "Heating and cooling without the headache. [Business Name] serves [City] homes with tune-ups, repairs and high-efficiency installs that can lower your energy bills."
+    ] },
+  { service:"painting",
+    note:"Weekday jobs (Mon–Fri).",
+    title:"House Painters in [City] — Interior, Exterior & Cabinets",
+    variants:[
+      "[Business Name] brings [City] homes back to life with clean, careful painting. Interior rooms, full exteriors and cabinet refinishing — prepped properly and finished beautifully.",
+      "Fresh paint, zero mess. [Business Name] serves [City] with color consultation, drywall patching and crisp lines on every wall. Free estimates and tidy crews.",
+      "From one room to the whole house, [Business Name] is the painter [City] homeowners recommend. Quality paints, honest timelines, and results you'll love coming home to."
+    ] },
+  { service:"emergency",
+    title:"24/7 Emergency Home Repairs in [City] — Help Any Hour",
+    variants:[
+      "Burst pipe at 2 a.m.? [Business Name] answers around the clock in [City]. Our emergency dispatch sends a local pro fast — nights, weekends and holidays.",
+      "Home emergencies don't wait for business hours, and neither does [Business Name]. Call any time for urgent plumbing, electrical and repair help anywhere in [City].",
+      "When something breaks badly, [Business Name] is [City]'s first call — 24/7 emergency response, calm dispatchers, and pros who arrive ready to fix it."
+    ] }
+];
+var CAMERA_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.4"/></svg>';
+function renderPool(){
+  document.getElementById("pool-kits").innerHTML = POOL_KITS.map(function(k){
+    var s = svc(k.service);
+    var variants = k.variants.map(function(v, i){
+      var letter = "ABC".charAt(i);
+      return '<div class="variant"><span class="vtag">Version ' + letter + '</span><p>' + esc(v) + '</p>' +
+        '<button type="button" class="use-v" data-service="' + k.service + '" data-variant="' + i + '">Use Version ' + letter + '</button></div>';
+    }).join("");
+    return '<article class="kit">' +
+      '<div class="kit-head"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + s.icon + '</svg></span>' +
+      '<div><h3>' + esc(s.name) + ' Kit</h3><div class="sub">' + esc(s.blurb) + '</div></div></div>' +
+      '<div class="kit-cols">' +
+        '<div><p class="kit-label">Photo</p><div class="kit-photo">' + CAMERA_SVG + '<b>Service photo</b><span>Photo slot — replace it with a real photo of your team at work.</span></div></div>' +
+        '<div><p class="kit-label">Ready listing title</p><div class="title-ex">' + esc(k.title) + '</div>' +
+        '<p class="kit-label" style="margin-top:18px">Description — pick one version</p>' + variants +
+        (k.note ? '<div class="kit-note"><b>Partner note:</b> ' + esc(k.note) + '</div>' : '') +
+        '<button type="button" class="btn btn-accent use-kit" data-service="' + k.service + '" data-variant="0">Use This Kit</button></div>' +
+      '</div></article>';
+  }).join("");
+}
+/* ---------------- Coverage & target locations ----------------
+   Coverage is nationwide — all 50 states, verified against the partner
+   networks (MarketCall + LeadSmart) on 2026-10-25. Each state has ONE hub
+   city (its largest metro) used as the listing anchor; a hub listing is a
+   service-area listing serving roughly a 60 km / ~37-mile radius.
+   `priority` flags the metros with the strongest payouts in the networks'
+   own coverage tool. Internal payout amounts and number limits are NOT
+   published here — this is public partner guidance only. */
+var STATES = [
+  { abbr:"AL", name:"Alabama", hub:"Birmingham" },
+  { abbr:"AK", name:"Alaska", hub:"Anchorage" },
+  { abbr:"AZ", name:"Arizona", hub:"Phoenix", priority:"Phoenix" },
+  { abbr:"AR", name:"Arkansas", hub:"Little Rock" },
+  { abbr:"CA", name:"California", hub:"Los Angeles", priority:"San Diego" },
+  { abbr:"CO", name:"Colorado", hub:"Denver", priority:"Colorado Springs" },
+  { abbr:"CT", name:"Connecticut", hub:"Hartford" },
+  { abbr:"DE", name:"Delaware", hub:"Wilmington" },
+  { abbr:"FL", name:"Florida", hub:"Miami", priority:"South Florida (Miami · Fort Lauderdale · Sarasota) & Orlando" },
+  { abbr:"GA", name:"Georgia", hub:"Atlanta" },
+  { abbr:"HI", name:"Hawaii", hub:"Honolulu" },
+  { abbr:"ID", name:"Idaho", hub:"Boise" },
+  { abbr:"IL", name:"Illinois", hub:"Chicago" },
+  { abbr:"IN", name:"Indiana", hub:"Indianapolis" },
+  { abbr:"IA", name:"Iowa", hub:"Des Moines" },
+  { abbr:"KS", name:"Kansas", hub:"Wichita" },
+  { abbr:"KY", name:"Kentucky", hub:"Louisville" },
+  { abbr:"LA", name:"Louisiana", hub:"New Orleans" },
+  { abbr:"ME", name:"Maine", hub:"Portland" },
+  { abbr:"MD", name:"Maryland", hub:"Baltimore" },
+  { abbr:"MA", name:"Massachusetts", hub:"Boston" },
+  { abbr:"MI", name:"Michigan", hub:"Detroit" },
+  { abbr:"MN", name:"Minnesota", hub:"Minneapolis" },
+  { abbr:"MS", name:"Mississippi", hub:"Jackson" },
+  { abbr:"MO", name:"Missouri", hub:"St. Louis" },
+  { abbr:"MT", name:"Montana", hub:"Billings" },
+  { abbr:"NE", name:"Nebraska", hub:"Omaha" },
+  { abbr:"NV", name:"Nevada", hub:"Las Vegas", priority:"Las Vegas" },
+  { abbr:"NH", name:"New Hampshire", hub:"Manchester" },
+  { abbr:"NJ", name:"New Jersey", hub:"Newark" },
+  { abbr:"NM", name:"New Mexico", hub:"Albuquerque" },
+  { abbr:"NY", name:"New York", hub:"New York City" },
+  { abbr:"NC", name:"North Carolina", hub:"Charlotte" },
+  { abbr:"ND", name:"North Dakota", hub:"Fargo" },
+  { abbr:"OH", name:"Ohio", hub:"Columbus" },
+  { abbr:"OK", name:"Oklahoma", hub:"Oklahoma City" },
+  { abbr:"OR", name:"Oregon", hub:"Portland" },
+  { abbr:"PA", name:"Pennsylvania", hub:"Philadelphia" },
+  { abbr:"RI", name:"Rhode Island", hub:"Providence" },
+  { abbr:"SC", name:"South Carolina", hub:"Greenville" },
+  { abbr:"SD", name:"South Dakota", hub:"Sioux Falls" },
+  { abbr:"TN", name:"Tennessee", hub:"Nashville" },
+  { abbr:"TX", name:"Texas", hub:"Dallas–Fort Worth", priority:"Dallas–Fort Worth & Houston" },
+  { abbr:"UT", name:"Utah", hub:"Salt Lake City" },
+  { abbr:"VT", name:"Vermont", hub:"Burlington" },
+  { abbr:"VA", name:"Virginia", hub:"Virginia Beach" },
+  { abbr:"WA", name:"Washington", hub:"Seattle", priority:"Seattle–Tacoma" },
+  { abbr:"WV", name:"West Virginia", hub:"Charleston" },
+  { abbr:"WI", name:"Wisconsin", hub:"Milwaukee" },
+  { abbr:"WY", name:"Wyoming", hub:"Cheyenne" }
+];
+function renderCoverage(){
+  document.getElementById("pool-coverage").innerHTML = STATES.map(function(st){
+    return '<div class="cov"><div class="st">' + esc(st.name) + ' · ' + esc(st.abbr) +
+      (st.priority ? ' <span class="badge badge-sponsored">★ Priority</span>' : '') + '</div>' +
+      '<div class="hub">Hub: <b>' + esc(st.hub) + '</b> — serves ~60 km around it</div>' +
+      (st.priority ? '<div class="prio-note">Priority area: <b>' + esc(st.priority) + '</b></div>' : '') +
+      '</div>';
+  }).join("");
+}
+
+/* Pre-fill the Add Your Business form with the chosen kit, then go there. */
+function useKit(service, variantIdx){
+  var kit = null;
+  POOL_KITS.forEach(function(k){ if (k.service === service) kit = k; });
+  if (!kit) return;
+  document.getElementById("af-service").value = service;
+  document.getElementById("af-desc").value = kit.variants[variantIdx] || kit.variants[0];
+  if ((location.hash || "") === "#/add-your-business"){ route(); }
+  else { location.hash = "#/add-your-business"; }
+}
+
+/* ---------------- Static renders ---------------- */
+function renderTiles(){
+  document.getElementById("service-tiles").innerHTML = SERVICES.map(function(s){
+    return '<a class="tile" href="#/miami/' + s.slug + '">' +
+      '<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + s.icon + '</svg></span>' +
+      '<b>' + esc(s.name) + '</b><span>' + esc(s.blurb) + '</span></a>';
+  }).join("");
+}
+function serviceOptions(includeAll){
+  var h = includeAll ? '<option value="">All services</option>' : "";
+  return h + SERVICES.map(function(s){ return '<option value="' + s.slug + '">' + esc(s.name) + '</option>'; }).join("");
+}
+function renderHome(){
+  var ads = LISTINGS.filter(function(l){ return l.tier==="advertised"; });
+  /* Latest = most recently published FREE listings only — never a repeat of the Sponsored cards above. */
+  var latest = LISTINGS.filter(function(l){ return l.tier!=="advertised"; }).slice().reverse();
+  document.getElementById("home-advertised").innerHTML = ads.length ? ads.map(cardHTML).join("") : emptyHTML("No advertised pros yet.");
+  document.getElementById("home-latest").innerHTML = latest.length ? latest.map(cardHTML).join("") :
+    '<div class="empty"><h3>No free Published listings yet — yours could be the first</h3>' +
+    '<p>The directory just opened. Every business above is a paid Advertised placement; this space is reserved for free Published listings, newest first.</p>' +
+    '<a class="btn btn-accent" href="#/add-your-business">Add Your Business — Free</a></div>';
+}
+
+/* ---------------- Browse ---------------- */
+var browseState = { service:"", city:"" };
+function renderBrowse(){
+  document.getElementById("bf-service").value = browseState.service;
+  document.getElementById("bf-city").value = browseState.city;
+  var cityQ = browseState.city.trim().toLowerCase();
+  function match(l){
+    if (browseState.service && l.service !== browseState.service) return false;
+    if (cityQ){
+      var hay = (l.city + " " + l.state + " " + l.area).toLowerCase();
+      if (hay.indexOf(cityQ) === -1 && cityQ.replace(/\D/g,"").length < 3) return false;
+      if (hay.indexOf(cityQ) === -1) return false;
+    }
+    return true;
+  }
+  var ads = LISTINGS.filter(function(l){ return l.tier==="advertised" && match(l); });
+  var free = LISTINGS.filter(function(l){ return l.tier!=="advertised" && match(l); });
+  var root = document.getElementById("browse-results");
+  var ctx = "No businesses match this search yet. If you run a home-service business here, your free listing could be the first one homeowners see.";
+  root.innerHTML = groupHTML("Advertised Pros — Sponsored", ads, ctx) + groupHTML("Published Listings — Free", free, ctx);
+}
+
+/* ---------------- Detail ---------------- */
+function renderDetail(id){
+  var l = listingById(id);
+  var root = document.getElementById("detail-root");
+  if (!l){
+    root.innerHTML = '<div class="page-head"><h2>Listing not found</h2><p>This listing may have been removed. <a href="#/browse">Browse all pros</a> instead.</p></div>';
+    return;
+  }
+  var s = svc(l.service);
+  root.innerHTML =
+    '<div class="crumbs"><a href="#/">Home</a> › <a href="#/browse">Browse Pros</a> › <a href="#/miami/' + s.slug + '">' + esc(s.plural) + ' in Miami, FL</a> › ' + esc(l.business) + '</div>' +
+    '<div class="detail-head"><div class="top">' +
+      '<div class="avatar" aria-hidden="true">' + esc(l.business.charAt(0)) + '</div>' +
+      '<div style="flex:1;min-width:220px"><h1 style="font-size:1.7rem;font-weight:900">' + esc(l.business) + '</h1>' +
+      '<div class="svc" style="font-weight:700;color:var(--navy2)">' + esc(s.name) + ' · ' + esc(l.city) + ', ' + esc(l.state) + '</div>' +
+      '<div class="meta" style="color:var(--ink2);font-size:.92rem;margin-top:4px">' + esc(l.hours) + '</div></div>' +
+      '<div class="badges">' + (l.tier==="advertised" ? '<span class="badge badge-sponsored">★ Sponsored</span>' : '<span class="badge badge-free">Published</span>') + '<span class="badge badge-open">Open Now</span></div>' +
+    '</div></div>' +
+    '<div class="detail-grid">' +
+      '<div class="panel"><h3>About</h3><p style="color:var(--ink2);margin:0">' + esc(l.about) + '</p>' +
+      '<h3 style="margin-top:22px">Services</h3><p style="margin:0"><span class="badge badge-free" style="font-size:.8rem;text-transform:none;letter-spacing:0;padding:6px 12px">' + esc(s.name) + '</span></p>' +
+      '<p style="margin-top:26px"><a class="report" href="mailto:info@easytofix.homes?subject=Report%20listing%3A%20' + encodeURIComponent(l.business + " (" + l.id + ")") + '">Report this listing</a></p></div>' +
+      '<div class="panel"><h3>Contact this pro</h3><div class="big-call">' +
+        '<a class="callbtn" href="' + telHref(l.phone) + '">' + PHONE_SVG + ' Call Now</a>' +
+        websiteHTML(l) +
+        '<div class="num">' + esc(l.phone) + '</div>' +
+        '<dl><div><dt>Service area</dt><dd>' + esc(l.area) + '</dd></div>' +
+        '<div><dt>Hours</dt><dd>' + esc(l.hours) + '</dd></div>' +
+        '<div><dt>Based in</dt><dd>' + esc(l.city) + ', ' + esc(l.state) + '</dd></div>' +
+        (l.website ? '<div><dt>Website</dt><dd><a href="' + esc(l.website) + '" target="_blank" rel="' + (l.tier==="advertised" ? "sponsored nofollow" : "nofollow") + ' noopener">' + esc(l.website.replace(/^https?:\/\//,"")) + '</a></dd></div>' : '') + '</dl>' +
+        '<p style="font-size:.85rem;color:var(--ink2);margin:0">You’ll speak directly with the business. FixProsList never takes advance payments.</p>' +
+      '</div></div>' +
+    '</div>' +
+    /* One ad slot, free listings only — Advertised pages carry no ads. */
+    (l.tier === "advertised" ? "" : adSlotHTML());
+}
+
+/* ---------------- Service × City landing ---------------- */
+/* Pattern: #/<city-slug>/<service-slug> — seeded for all 50 state hub cities
+   (the same hubs as the coverage grid on the Listing Pool page; Miami also covers
+   Miami Beach listings). Pages generate automatically; cities without listings
+   show the honest empty state. */
+var CITIES = {
+  "birmingham": { name:"Birmingham", state:"AL", match:["birmingham"] },
+  "anchorage": { name:"Anchorage", state:"AK", match:["anchorage"] },
+  "phoenix": { name:"Phoenix", state:"AZ", match:["phoenix"] },
+  "little-rock": { name:"Little Rock", state:"AR", match:["little rock"] },
+  "los-angeles": { name:"Los Angeles", state:"CA", match:["los angeles"] },
+  "denver": { name:"Denver", state:"CO", match:["denver"] },
+  "hartford": { name:"Hartford", state:"CT", match:["hartford"] },
+  "wilmington": { name:"Wilmington", state:"DE", match:["wilmington"] },
+  "miami": { name:"Miami", state:"FL", match:["miami", "miami beach"] },
+  "atlanta": { name:"Atlanta", state:"GA", match:["atlanta"] },
+  "honolulu": { name:"Honolulu", state:"HI", match:["honolulu"] },
+  "boise": { name:"Boise", state:"ID", match:["boise"] },
+  "chicago": { name:"Chicago", state:"IL", match:["chicago"] },
+  "indianapolis": { name:"Indianapolis", state:"IN", match:["indianapolis"] },
+  "des-moines": { name:"Des Moines", state:"IA", match:["des moines"] },
+  "wichita": { name:"Wichita", state:"KS", match:["wichita"] },
+  "louisville": { name:"Louisville", state:"KY", match:["louisville"] },
+  "new-orleans": { name:"New Orleans", state:"LA", match:["new orleans"] },
+  "portland-me": { name:"Portland", state:"ME", match:["portland"] },
+  "baltimore": { name:"Baltimore", state:"MD", match:["baltimore"] },
+  "boston": { name:"Boston", state:"MA", match:["boston"] },
+  "detroit": { name:"Detroit", state:"MI", match:["detroit"] },
+  "minneapolis": { name:"Minneapolis", state:"MN", match:["minneapolis"] },
+  "jackson": { name:"Jackson", state:"MS", match:["jackson"] },
+  "st-louis": { name:"St. Louis", state:"MO", match:["st. louis", "st louis"] },
+  "billings": { name:"Billings", state:"MT", match:["billings"] },
+  "omaha": { name:"Omaha", state:"NE", match:["omaha"] },
+  "las-vegas": { name:"Las Vegas", state:"NV", match:["las vegas"] },
+  "manchester": { name:"Manchester", state:"NH", match:["manchester"] },
+  "newark": { name:"Newark", state:"NJ", match:["newark"] },
+  "albuquerque": { name:"Albuquerque", state:"NM", match:["albuquerque"] },
+  "new-york-city": { name:"New York City", state:"NY", match:["new york city", "new york"] },
+  "charlotte": { name:"Charlotte", state:"NC", match:["charlotte"] },
+  "fargo": { name:"Fargo", state:"ND", match:["fargo"] },
+  "columbus": { name:"Columbus", state:"OH", match:["columbus"] },
+  "oklahoma-city": { name:"Oklahoma City", state:"OK", match:["oklahoma city"] },
+  "portland": { name:"Portland", state:"OR", match:["portland"] },
+  "philadelphia": { name:"Philadelphia", state:"PA", match:["philadelphia"] },
+  "providence": { name:"Providence", state:"RI", match:["providence"] },
+  "greenville": { name:"Greenville", state:"SC", match:["greenville"] },
+  "sioux-falls": { name:"Sioux Falls", state:"SD", match:["sioux falls"] },
+  "nashville": { name:"Nashville", state:"TN", match:["nashville"] },
+  "dallas-fort-worth": { name:"Dallas–Fort Worth", state:"TX", match:["dallas–fort worth", "dallas", "fort worth"] },
+  "salt-lake-city": { name:"Salt Lake City", state:"UT", match:["salt lake city"] },
+  "burlington": { name:"Burlington", state:"VT", match:["burlington"] },
+  "virginia-beach": { name:"Virginia Beach", state:"VA", match:["virginia beach"] },
+  "seattle": { name:"Seattle", state:"WA", match:["seattle"] },
+  "charleston": { name:"Charleston", state:"WV", match:["charleston"] },
+  "milwaukee": { name:"Milwaukee", state:"WI", match:["milwaukee"] },
+  "cheyenne": { name:"Cheyenne", state:"WY", match:["cheyenne"] }
+};
+function renderLanding(citySlug, serviceSlug){
+  var s = svc(serviceSlug);
+  var c = CITIES[citySlug];
+  var root = document.getElementById("landing-root");
+  if (!s || !c){
+    root.innerHTML = '<div class="page-head"><h2>Page not found</h2><p><a href="#/browse">Browse all pros</a> or pick a service from the <a href="#/">home page</a>.</p></div>';
+    return;
+  }
+  var inCity = LISTINGS.filter(function(l){
+    return l.service===serviceSlug && c.match.indexOf(l.city.toLowerCase()) !== -1;
+  });
+  var ads = inCity.filter(function(l){ return l.tier==="advertised"; });
+  var free = inCity.filter(function(l){ return l.tier!=="advertised"; });
+  var others = SERVICES.filter(function(x){ return x.slug!==serviceSlug; }).map(function(x){
+    return '<li><a href="#/' + citySlug + '/' + x.slug + '">' + esc(x.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</a></li>';
+  }).join("");
+  var ctx = "There are no " + s.name.toLowerCase() + " pros listed in " + c.name + " yet. If that’s your trade, claim this page with a free listing.";
+  root.innerHTML =
+    '<div class="crumbs"><a href="#/">Home</a> › <a href="#/browse">Browse Pros</a> › ' + esc(s.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</div>' +
+    '<div class="page-head"><h1>' + esc(s.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</h1>' +
+    '<p>Need ' + esc(s.name.toLowerCase()) + ' help in ' + esc(c.name) + '? Compare local pros below and call directly — no middleman, no advance payments. ' + esc(s.blurb) + '.</p></div>' +
+    '<section class="block" style="padding-top:24px">' +
+      groupHTML("Advertised Pros — Sponsored", ads, ctx) +
+      groupHTML("Published Listings — Free", free, ctx) +
+      '<div class="cta-band" style="margin-top:36px"><div><h2>Do ' + esc(s.name.toLowerCase()) + ' work in ' + esc(c.name) + '?</h2>' +
+      '<p>This page is where ' + esc(c.name) + ' homeowners look first. A Published listing is free — an Advertised listing puts you above everyone else here.</p></div>' +
+      '<a class="btn btn-accent" href="#/add-your-business">List Your Business Free</a></div>' +
+      '<h3 style="margin:34px 0 10px;font-family:Archivo">Other services in ' + esc(c.name) + ', ' + esc(c.state) + '</h3>' +
+      '<ul style="columns:2;max-width:640px;line-height:2;padding-left:18px">' + others + '</ul>' +
+    '</section>';
+}
+
+/* ---------------- Blog ----------------
+   Starter articles written for US homeowners. Practical guidance only —
+   no invented statistics, prices or claims; where a number depends on the
+   home and the market, the article says so and tells the reader how to get
+   a real quote. Each article ends with a CTA to the matching service. */
+var ARTICLES = [
+  { slug:"how-much-does-a-plumber-cost-2026",
+    title:"How Much Does a Plumber Cost in 2026? A Homeowner's Guide",
+    category:"Plumbing", service:"plumbing", minutes:6, date:"October 2026",
+    excerpt:"There is no single price for a plumber — but there is a logic behind every quote. Here is what you are actually paying for, what pushes a bill up or down, and how to compare quotes fairly.",
+    photo:"Photo slot — a plumber at work under a kitchen sink. Replace with a real photo before promoting this article.",
+    body:[
+      "<p>Ask three plumbers what a job costs and you may get three different answers — all of them honest. Plumbing is priced job by job, because no two homes, pipe runs or problems are exactly alike. This guide explains what a plumbing quote is really made of, so you can judge a price instead of just hoping it is fair.</p>",
+      "<h3>What you are actually paying for</h3>",
+      "<p>Almost every plumbing bill is built from the same parts:</p>",
+      "<ul><li><b>The visit itself.</b> Many plumbers charge a diagnostic or trip fee to come out, find the problem and quote the fix. Ask whether that fee is credited toward the repair if you go ahead — often it is.</li><li><b>Labor.</b> Charged either as a flat rate for the whole job or by the hour. Flat-rate pricing is easier to compare; hourly pricing can work out better for small, simple jobs.</li><li><b>Parts and materials.</b> A faucet, a valve and a water heater are very different purchases. You are paying for the part itself, and better parts usually carry better warranties.</li><li><b>Access.</b> A pipe under an open basement ceiling is quick work. The same pipe behind a tiled wall or under a concrete slab takes longer — and costs more.</li></ul>",
+      "<h3>What pushes the price up</h3>",
+      "<ul><li><b>Timing.</b> Nights, weekends and holidays usually carry an emergency premium. If a problem can safely wait until a weekday morning, it usually costs less.</li><li><b>Water damage risk.</b> Jobs that protect the home from flooding — burst pipes, failed water heaters, sewer backups — are priced as the urgent work they are.</li><li><b>Permits and code.</b> Bigger jobs, like water heater replacement or repiping, may need a permit and an inspection. A quote that includes them is not padding; it is the job done legally.</li><li><b>Your market.</b> Labor rates in a large metro run higher than in a small town. The same repair legitimately costs different amounts in different cities.</li></ul>",
+      "<h3>Small job, big job — how to think about it</h3>",
+      "<p>A dripping faucet or a running toilet is normally a short visit with inexpensive parts. Clearing a simple drain clog is also routine, but a clog that keeps coming back can be a sign of a bigger problem in the main line — and that is a different job with a different price. Replacing a water heater sits at the top end of everyday plumbing work: you are buying the unit, the installation, and safe disposal of the old one. If a quote for a big job seems too good to be true, ask what it leaves out.</p>",
+      "<h3>How to compare quotes like a pro</h3>",
+      "<ul><li>Get the quote in writing, with labor and parts listed separately.</li><li>Ask what the warranty covers — the part, the labor, or both — and for how long.</li><li>Ask whether the price is flat or hourly, and what happens if the job turns out bigger than expected.</li><li>Check that the plumber is licensed and insured for work in your state; requirements vary, and a real pro will not mind the question.</li><li>Never pay the full amount upfront. Paying the business directly, when the work is agreed or done, is the normal, safe way.</li></ul>",
+      "<h3>The bottom line</h3>",
+      "<p>The right question is not “what does a plumber cost?” but “what does <i>my</i> job cost, done properly, with a warranty?” Get two or three written quotes for anything significant, compare what is included rather than just the total, and choose the pro who explains the work clearly. Clear explanations are the best sign you have found the right plumber.</p>"
+    ] },
+  { slug:"signs-your-water-heater-is-about-to-fail",
+    title:"7 Signs Your Water Heater Is About to Fail",
+    category:"Plumbing · HVAC", service:"plumbing", minutes:5, date:"October 2026",
+    excerpt:"Water heaters rarely die without warning. They grumble, rust and leak first. Catch these seven signs early and you can plan a replacement — instead of mopping up after one.",
+    photo:"Photo slot — a tank water heater in a utility room. Replace with a real photo before promoting this article.",
+    body:[
+      "<p>A water heater almost never fails out of nowhere. In the weeks and months before it gives up, it leaves clues — sounds, stains and lukewarm showers. Knowing the signs lets you replace it on your schedule and your budget, instead of during a flood on a Sunday night.</p>",
+      "<h3>1. It is simply old</h3>",
+      "<p>A conventional tank water heater typically lasts around 8 to 12 years. Check the manufacturer’s label on the tank for the install or manufacture date. If yours is in that range or past it, every other sign on this list matters much more — the tank is living on borrowed time.</p>",
+      "<h3>2. Rusty or discolored hot water</h3>",
+      "<p>If rusty water comes only from the hot taps, the inside of the tank is likely corroding. Corrosion does not heal; it eats through the steel until the tank leaks. Rusty water from both hot and cold taps points to your pipes instead — either way, it is worth a professional look.</p>",
+      "<h3>3. Rumbling, popping or banging noises</h3>",
+      "<p>As a tank ages, sediment settles on the bottom. The burner or element then has to heat through that layer, and the trapped water boils and pops beneath it — that is the rumbling you hear. Sediment makes the heater work harder, wear faster and use more energy.</p>",
+      "<h3>4. Water pooling around the base</h3>",
+      "<p>Moisture or a small puddle under the tank is an early leak warning. Small fittings and valves can be repaired, but a tank that is leaking from its body cannot — the steel has failed, and replacement is the only real fix. Do not ignore a damp floor around the heater.</p>",
+      "<h3>5. Showers that will not stay hot</h3>",
+      "<p>Lukewarm water, or hot water that runs out far faster than it used to, means the heater is losing the fight — sediment buildup, a failing heating element or a worn burner are the usual causes. If the unit is young, a repair may solve it. If it is old, this is sign number one knocking again.</p>",
+      "<h3>6. Cloudy water or a metallic taste</h3>",
+      "<p>Hot water that looks cloudy or tastes metallic can mean minerals and tank lining are breaking down inside. Combined with any other sign here, it tells you the tank’s protective lining — the thing standing between the water and the steel — is nearly gone.</p>",
+      "<h3>7. Repairs are becoming a habit</h3>",
+      "<p>One repair on a young heater is normal maintenance. A repair every season on an old one is a pattern — and money that could have gone toward a replacement with a fresh warranty. When the repair bills start stacking up, do the math honestly.</p>",
+      "<h3>What to do when you spot the signs</h3>",
+      "<p>Start with the label: how old is it? Then look and listen — puddles, rust, rumbling. If two or more signs are present and the tank is over eight years old, get a quote for replacement before it fails. A planned replacement is a normal appointment; an emergency one comes with a flooded floor. Talk to a local plumber about your options — and if your heating system shares the workload, an HVAC pro can check the other half of the picture.</p>"
+    ] },
+  { slug:"new-roof-vs-roof-repair-how-to-decide",
+    title:"New Roof vs Roof Repair: How to Decide",
+    category:"Roofing", service:"roofing", minutes:5, date:"October 2026",
+    excerpt:"One leak does not always mean a new roof — and a patch is not always a bargain. Here is a clear way to decide between repairing what you have and replacing it for good.",
+    photo:"Photo slot — a roofer installing new shingles. Replace with a real photo before promoting this article.",
+    body:[
+      "<p>Every homeowner with a roof leak faces the same question: patch it, or replace the whole roof? The honest answer depends on the roof’s age, its overall condition, and how much life is left in it. Here is how to think it through — the same way a good roofer will.</p>",
+      "<h3>When a repair makes sense</h3>",
+      "<ul><li><b>The roof is relatively young</b> and one isolated problem — storm damage to a small area, a lifted shingle, a worn flashing joint — is letting water in.</li><li><b>The rest of the roof is healthy:</b> shingles lying flat, granules in place, no sagging, no other leaks.</li><li><b>The damage has a clear, single cause</b> that a repair can fully fix, not just hide.</li></ul>",
+      "<p>A targeted repair on a sound roof is money well spent. The mistake is repairing a roof that is failing everywhere at once.</p>",
+      "<h3>When replacement is the smarter call</h3>",
+      "<ul><li><b>Age.</b> An asphalt shingle roof typically lasts around 20 to 25 years. If yours is in that range, repairs are buying months, not years.</li><li><b>Leaks in more than one place.</b> Water showing up in different rooms usually means the system — not one shingle — has failed.</li><li><b>Curling, cracking or bald shingles across the roof.</b> When wear is everywhere, it is not damage; it is the roof reaching the end of its life.</li><li><b>Sagging or soft spots.</b> A dip in the roofline means the decking underneath may be rotting — a structural issue no surface patch can fix.</li><li><b>Repair bills that keep coming.</b> Add up the last few seasons of patching. When the total starts chasing the cost of doing the job once, properly, replacement wins.</li></ul>",
+      "<h3>Do the simple math</h3>",
+      "<p>Compare two honest numbers: what a repair costs now (knowing another may follow), against a full replacement that resets the clock with new materials and a warranty. A new roof also ends the background worry — no more buckets, no more ceiling stains, no more wondering which storm finishes it. For most homeowners who plan to stay in the house, a roof at the end of its life is a replacement, not a repair project.</p>",
+      "<h3>A note on who does the work</h3>",
+      "<p>The roofing pros listed on this site focus on <b>new roof installation and full replacement</b> — that is the work they are set up, equipped and priced to do well. If your roof only needs a small repair, a local handyman or repair service may be the right call. But if your inspection lands on replacement, you are exactly who these pros are here for — and a replacement quote should always be free, written and itemized before you decide anything.</p>",
+      "<h3>The bottom line</h3>",
+      "<p>Repair a young, healthy roof with a single problem. Replace an old or widely worn one — and stop paying for the same roof twice. Either way, start with an honest inspection and a written assessment of the roof’s remaining life, so the decision is based on the roof you actually have.</p>"
+    ] }
+];
+function postCardHTML(a){
+  return '<article class="post-card">' +
+    '<div class="post-meta"><span class="cat">' + esc(a.category) + '</span><span>' + esc(a.date) + '</span><span>· ' + a.minutes + ' min read</span></div>' +
+    '<h3><a href="#/blog/' + a.slug + '">' + esc(a.title) + '</a></h3>' +
+    '<p>' + esc(a.excerpt) + '</p>' +
+    '<a class="read" href="#/blog/' + a.slug + '">Read the guide →</a></article>';
+}
+function renderBlog(){
+  document.getElementById("blog-grid").innerHTML = ARTICLES.map(postCardHTML).join("");
+}
+function articleBySlug(slug){ for (var i=0;i<ARTICLES.length;i++) if (ARTICLES[i].slug===slug) return ARTICLES[i]; return null; }
+function renderArticle(slug){
+  var a = articleBySlug(slug);
+  var root = document.getElementById("article-root");
+  if (!a){
+    root.innerHTML = '<div class="page-head"><h2>Article not found</h2><p>This article may have moved. <a href="#/blog">Browse all guides</a> instead.</p></div>';
+    return;
+  }
+  var s = svc(a.service);
+  var pro = null;
+  LISTINGS.forEach(function(l){ if (!pro && l.service===a.service) pro = l; });
+  var others = ARTICLES.filter(function(x){ return x.slug!==a.slug; });
+  root.innerHTML =
+    '<div class="crumbs"><a href="#/">Home</a> › <a href="#/blog">Blog</a> › ' + esc(a.title) + '</div>' +
+    '<article class="article-wrap" style="padding-bottom:8px">' +
+      '<div class="post-meta" style="margin-top:26px"><span class="cat">' + esc(a.category) + '</span><span>' + esc(a.date) + '</span><span>· ' + a.minutes + ' min read</span></div>' +
+      '<h1>' + esc(a.title) + '</h1>' +
+      '<div class="article-photo" role="img" aria-label="' + esc(a.photo) + '">' + CAMERA_SVG + '<b>Article photo</b><span>' + esc(a.photo) + '</span></div>' +
+      '<div class="article-body">' + a.body.join("") + '</div>' +
+      '<div class="cta-box"><h3>Need a ' + esc(s.name.toLowerCase()) + ' pro?</h3>' +
+      '<p>Reading only gets you so far. Talk to a reviewed local pro, get a written quote, and pay the business directly — this platform never takes advance payments.</p>' +
+      '<div class="acts">' +
+        (pro ? '<a class="callbtn" href="' + telHref(pro.phone) + '">' + PHONE_SVG + ' Call ' + esc(pro.phone) + '</a>' : '') +
+        '<a class="seelink" href="#/miami/' + s.slug + '">See ' + esc(s.plural) + ' in Miami, FL →</a>' +
+        '<a class="seelink" href="#/browse">Browse all pros →</a>' +
+      '</div></div>' +
+    '</article>' +
+    '<section class="block" style="padding-top:34px"><div class="sec-head"><div><h2>More from the blog</h2></div>' +
+    '<a class="more" href="#/blog">All guides →</a></div>' +
+    '<div class="blog-grid">' + others.map(postCardHTML).join("") + '</div></section>';
+}
+
+/* ---------------- SEO + routing ---------------- */
+function setMeta(title, desc){
+  document.title = title;
+  var m = document.getElementById("meta-desc");
+  if (m) m.setAttribute("content", desc);
+}
+var VIEWS = ["home","browse","pool","partner","detail","landing","blog","article","add","advertise","job","about","terms","privacy"];
+function show(view){
+  VIEWS.forEach(function(v){ document.getElementById("view-"+v).classList.toggle("active", v===view); });
+  document.getElementById("main-nav").classList.remove("open");
+  document.getElementById("menu-btn").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+}
+function route(){
+  var hash = (location.hash || "#/").replace(/^#\/?/, "");
+  var parts = hash.split("/").filter(Boolean);
+  if (parts.length === 0){
+    show("home");
+    setMeta(BRAND + " — Find Local Home Service Pros", "Find trusted local home-service pros across the USA, or list your business free. Plumbing, electrical, HVAC, roofing, garage doors, appliances, painting and 24/7 emergency help.");
+  } else if (parts[0] === "browse"){
+    show("browse"); renderBrowse();
+    setMeta("Browse Home Service Pros — " + BRAND, "Browse reviewed home-service pros. Advertised (Sponsored) pros first, then free Published listings.");
+  } else if (parts[0] === "listing-pool"){
+    show("pool");
+    setMeta("Listing Pool — Ready-Made Listing Kits | " + BRAND, "Ready listing kits for every home service: a title, three description versions and a photo slot. Pick a kit, add your city, publish.");
+  } else if (parts[0] === "partner-dashboard"){
+    show("partner");
+    setMeta("Partner Dashboard (Preview) — " + BRAND, "Preview of the partner call tracker: your own calls only, live call status, recordings, and a fully transparent 80/20 earnings split.");
+  } else if (parts[0] === "listing" && parts[1]){
+    show("detail"); renderDetail(parts[1]);
+    var l = listingById(parts[1]);
+    if (l) setMeta(l.business + " — " + svc(l.service).name + " in " + l.city + ", " + l.state + " | " + BRAND,
+      "Call " + l.business + " for " + svc(l.service).name.toLowerCase() + " in " + l.city + ", " + l.state + ". " + l.hours + ". Phone: " + l.phone + ".");
+  } else if (parts[0] === "blog" && parts.length === 1){
+    show("blog"); renderBlog();
+    setMeta("Blog — Homeowner Guides | " + BRAND, "Plain-English guides for homeowners: what home-service jobs cost and why, warning signs to watch for, and how to decide between repair and replacement.");
+  } else if (parts[0] === "blog" && parts[1]){
+    show("article"); renderArticle(parts[1]);
+    var art = articleBySlug(parts[1]);
+    if (art) setMeta(art.title + " | " + BRAND + " Blog", art.excerpt);
+  } else if (parts[0] === "add-your-business"){
+    show("add");
+    setMeta("Add Your Business Free — " + BRAND, "List your home-service business free on FixProsList. Every listing is reviewed before it goes live.");
+  } else if (parts[0] === "advertise"){
+    show("advertise");
+    setMeta("Advertise — Top Placement for Home Service Pros | " + BRAND, "Advertised listings get top placement, a Sponsored badge and more calls. Published listings are always free.");
+  } else if (parts[0] === "post-a-job"){
+    show("job");
+    setMeta("Post a Job — " + BRAND, "Describe your job and local pros may contact you. You hire and pay the pro directly — never in advance through this site.");
+  } else if (parts[0] === "about"){
+    show("about"); setMeta("About — " + BRAND, "FixProsList is a reviewed US home-services directory connecting homeowners with independent local pros.");
+  } else if (parts[0] === "terms"){
+    show("terms"); setMeta("Terms of Use — " + BRAND, "Terms of use for FixProsList.");
+  } else if (parts[0] === "privacy"){
+    show("privacy"); setMeta("Privacy Policy — " + BRAND, "How FixProsList handles listing and job-post information.");
+  } else if (parts.length === 2 && CITIES[parts[0]] && svc(parts[1])){
+    show("landing"); renderLanding(parts[0], parts[1]);
+    var s = svc(parts[1]), c = CITIES[parts[0]];
+    setMeta(s.plural + " in " + c.name + ", " + c.state + " — Call Local Pros | " + BRAND,
+      "Find " + s.plural.toLowerCase() + " in " + c.name + ", " + c.state + ". Compare reviewed pros and call directly — 24/7 emergency help available.");
+  } else {
+    show("home");
+    setMeta(BRAND + " — Find Local Home Service Pros", "Find trusted local home-service pros across the USA, or list your business free.");
+  }
+}
+window.addEventListener("hashchange", route);
+
+/* ---------------- Init ---------------- */
+document.getElementById("hs-service").innerHTML = serviceOptions(false);
+document.getElementById("bf-service").innerHTML = serviceOptions(true);
+document.getElementById("af-service").innerHTML = serviceOptions(false);
+document.getElementById("jf-service").innerHTML = serviceOptions(false);
+renderTiles();
+renderHome();
+renderPool();
+renderCoverage();
+document.getElementById("pool-kits").addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("[data-service][data-variant]") : null;
+  if (b) useKit(b.getAttribute("data-service"), parseInt(b.getAttribute("data-variant"), 10) || 0);
+});
+
+document.getElementById("menu-btn").addEventListener("click", function(){
+  var nav = document.getElementById("main-nav");
+  var open = nav.classList.toggle("open");
+  this.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+document.getElementById("hero-search").addEventListener("submit", function(e){
+  e.preventDefault();
+  var service = document.getElementById("hs-service").value;
+  var city = document.getElementById("hs-city").value.trim().toLowerCase();
+  if (city.indexOf("miami") !== -1 && service){
+    location.hash = "#/miami/" + service;
+  } else {
+    browseState.service = service;
+    browseState.city = document.getElementById("hs-city").value.trim();
+    location.hash = "#/browse";
+    if ((location.hash || "") === "#/browse") renderBrowse();
+  }
+});
+document.getElementById("browse-filters").addEventListener("submit", function(e){
+  e.preventDefault();
+  browseState.service = document.getElementById("bf-service").value;
+  browseState.city = document.getElementById("bf-city").value.trim();
+  renderBrowse();
+});
+
+function wireForm(formId, successId){
+  document.getElementById(formId).addEventListener("submit", function(e){
+    e.preventDefault();
+    var form = this;
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+    document.getElementById(successId).classList.add("show");
+    form.reset();
+    document.getElementById(successId).scrollIntoView({ behavior:"smooth", block:"center" });
+  });
+}
+wireForm("add-form", "add-success");
+wireForm("job-form", "job-success");
+
+/* Partner Dashboard preview: sample live-call timer + recording note.
+   Preview only — no real calls, recordings or accounts behind this. */
+(function(){
+  var secs = 47;
+  var el = document.getElementById("live-elapsed");
+  if (el){
+    setInterval(function(){
+      secs++;
+      var m = Math.floor(secs / 60), s = secs % 60;
+      el.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    }, 1000);
+  }
+  var note = document.getElementById("rec-note");
+  document.getElementById("view-partner").addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("[data-rec]") : null;
+    if (b && note){ note.classList.add("show"); }
+  });
+})();
+
+route();
+</script>
+</body>
+</html>
