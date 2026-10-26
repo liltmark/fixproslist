@@ -303,6 +303,7 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
 .article-photo svg{width:40px;height:40px;stroke:var(--ink2)}
 .article-photo b{color:var(--ink);font-family:"Archivo";font-size:1rem}
 .article-photo span{font-size:.86rem}
+.article-photo-img{width:100%;height:auto;display:block;border-radius:var(--radius);margin:22px 0 28px}
 .article-body{font-size:1.05rem;line-height:1.7}
 .article-body p{margin:0 0 16px}
 .article-body h3{font-family:"Archivo";font-size:1.28rem;font-weight:800;margin:30px 0 10px;line-height:1.25}
@@ -1462,7 +1463,7 @@ var ARTICLES = [
     title:"How Much Does a Plumber Cost in 2026? A Homeowner's Guide",
     category:"Plumbing", service:"plumbing", minutes:6, date:"October 2026",
     excerpt:"There is no single price for a plumber — but there is a logic behind every quote. Here is what you are actually paying for, what pushes a bill up or down, and how to compare quotes fairly.",
-    photo:"Photo slot — a plumber at work under a kitchen sink. Replace with a real photo before promoting this article.",
+    photo:"blog/plumber-under-kitchen-sink.jpg", photoAlt:"A plumber at work under a kitchen sink",
     body:[
       "<p>Ask three plumbers what a job costs and you may get three different answers — all of them honest. Plumbing is priced job by job, because no two homes, pipe runs or problems are exactly alike. This guide explains what a plumbing quote is really made of, so you can judge a price instead of just hoping it is fair.</p>",
       "<h3>What you are actually paying for</h3>",
@@ -1481,7 +1482,7 @@ var ARTICLES = [
     title:"7 Signs Your Water Heater Is About to Fail",
     category:"Plumbing · HVAC", service:"plumbing", minutes:5, date:"October 2026",
     excerpt:"Water heaters rarely die without warning. They grumble, rust and leak first. Catch these seven signs early and you can plan a replacement — instead of mopping up after one.",
-    photo:"Photo slot — a tank water heater in a utility room. Replace with a real photo before promoting this article.",
+    photo:"blog/tank-water-heater.jpg", photoAlt:"A tank water heater in a utility room",
     body:[
       "<p>A water heater almost never fails out of nowhere. In the weeks and months before it gives up, it leaves clues — sounds, stains and lukewarm showers. Knowing the signs lets you replace it on your schedule and your budget, instead of during a flood on a Sunday night.</p>",
       "<h3>1. It is simply old</h3>",
@@ -1505,7 +1506,7 @@ var ARTICLES = [
     title:"New Roof vs Roof Repair: How to Decide",
     category:"Roofing", service:"roofing", minutes:5, date:"October 2026",
     excerpt:"One leak does not always mean a new roof — and a patch is not always a bargain. Here is a clear way to decide between repairing what you have and replacing it for good.",
-    photo:"Photo slot — a roofer installing new shingles. Replace with a real photo before promoting this article.",
+    photo:"blog/roofer-installing-shingles.jpg", photoAlt:"A roofer installing new shingles",
     body:[
       "<p>Every homeowner with a roof leak faces the same question: patch it, or replace the whole roof? The honest answer depends on the roof’s age, its overall condition, and how much life is left in it. Here is how to think it through — the same way a good roofer will.</p>",
       "<h3>When a repair makes sense</h3>",
@@ -1548,7 +1549,7 @@ function renderArticle(slug){
     '<article class="article-wrap" style="padding-bottom:8px">' +
       '<div class="post-meta" style="margin-top:26px"><span class="cat">' + esc(a.category) + '</span><span>' + esc(a.date) + '</span><span>· ' + a.minutes + ' min read</span></div>' +
       '<h1>' + esc(a.title) + '</h1>' +
-      '<div class="article-photo" role="img" aria-label="' + esc(a.photo) + '">' + CAMERA_SVG + '<b>Article photo</b><span>' + esc(a.photo) + '</span></div>' +
+      '<img class="article-photo-img" src="' + a.photo + '" alt="' + esc(a.photoAlt || "") + '" loading="lazy">' +
       '<div class="article-body">' + a.body.join("") + '</div>' +
       '<div class="cta-box"><h3>Need a ' + esc(s.name.toLowerCase()) + ' pro?</h3>' +
       '<p>Reading only gets you so far. Talk to a reviewed local pro, get a written quote, and pay the business directly — this platform never takes advance payments.</p>' +
