@@ -361,6 +361,25 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
 .page-head{padding:40px 0 6px}
 .page-head h1,.page-head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;letter-spacing:-.015em}
 .page-head p{color:var(--ink2);max-width:620px;margin:10px 0 0}
+
+/* ===== SIDEBAR ===== */
+.sidebar{position:fixed;top:0;left:0;width:264px;height:100dvh;background:var(--bg,#fff);border-right:1px solid var(--line,#e5e7eb);z-index:60;transform:translateX(-105%);transition:transform .25s ease;display:flex;flex-direction:column;overflow-y:auto}
+.sidebar.open{transform:none;box-shadow:0 0 40px rgba(0,0,0,.18)}
+.sb-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line,#e5e7eb)}
+.sb-brand{font-weight:900;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.sb-brand em{color:var(--good);font-style:normal}
+.sb-close{background:none;border:0;font-size:1.3rem;cursor:pointer;color:var(--ink2);line-height:1}
+.sb-sec{padding:14px 12px 2px}
+.sb-sec h3{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:0 6px 8px}
+.sb-sec a{display:block;padding:8px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
+.sb-sec a:hover{background:var(--good-bg,#e3f2e8)}
+.sb-sec a.active{background:var(--good-bg,#e3f2e8);color:var(--good)}
+.sb-cta{margin:auto 14px 16px;padding:14px;border-radius:12px;background:var(--good-bg,#e3f2e8)}
+.sb-cta p{margin:0 0 10px;font-size:.9rem;font-weight:600}
+.sb-toggle{position:fixed;left:12px;bottom:14px;z-index:55;background:var(--good,#177245);color:#fff;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.sb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:59;opacity:0;pointer-events:none;transition:opacity .25s}
+.sb-overlay.show{opacity:1;pointer-events:auto}
+@media (min-width:1200px){.sidebar{transform:none}body{padding-left:264px}.sb-toggle,.sb-overlay,.sb-close{display:none}}
 </style>
 </head>
 <body>
@@ -390,6 +409,52 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
     </nav>
   </div>
 </header>
+
+<!-- ================= SIDEBAR ================= -->
+<button class="sb-toggle" id="sb-toggle" aria-controls="sidebar" aria-expanded="false">&#9776; Menu</button>
+<div class="sb-overlay" id="sb-overlay"></div>
+<aside class="sidebar" id="sidebar" aria-label="Sidebar">
+  <div class="sb-head">
+    <a class="sb-brand" href="#/">Fix<em>Pros</em>List</a>
+    <button class="sb-close" id="sb-close" aria-label="Close sidebar">&times;</button>
+  </div>
+  <nav class="sb-sec" aria-label="Sidebar menu">
+    <h3>Menu</h3>
+    <a href="#/">Home</a>
+    <a href="#/browse">Find a Pro</a>
+    <a href="#/post-a-job">Post a Job</a>
+    <a href="#/add-your-business">List Your Business — Free</a>
+    <a href="#/advertise">Advertise</a>
+  </nav>
+  <nav class="sb-sec" aria-label="Popular services">
+    <h3>Popular Services in Miami</h3>
+    <a href="#/miami/plumbing">Plumbing</a>
+    <a href="#/miami/electrical">Electrical</a>
+    <a href="#/miami/garage-doors">Garage Doors</a>
+    <a href="#/miami/roofing">Roofing</a>
+    <a href="#/miami/appliances">Appliances</a>
+    <a href="#/miami/hvac">HVAC</a>
+    <a href="#/miami/painting">Painting</a>
+    <a href="#/miami/emergency">24/7 Emergency</a>
+  </nav>
+  <nav class="sb-sec" aria-label="Partners">
+    <h3>For Partners</h3>
+    <a href="#/partner-dashboard">Partner Dashboard</a>
+    <a href="#/listing-pool">Listing Pool</a>
+  </nav>
+  <nav class="sb-sec" aria-label="Company">
+    <h3>Company</h3>
+    <a href="#/blog">Blog</a>
+    <a href="#/about">About</a>
+    <a href="#/privacy">Privacy Policy</a>
+    <a href="#/terms">Terms</a>
+  </nav>
+  <div class="sb-cta">
+    <p>Are you a pro? Get listed free and start receiving real customer calls.</p>
+    <a class="btn btn-accent btn-sm" href="#/add-your-business">List Your Business — Free</a>
+  </div>
+</aside>
+
 
 <main>
 <!-- ================= HOME ================= -->
@@ -1638,6 +1703,22 @@ wireForm("job-form", "job-success");
 })();
 
 route();
+</script>
+
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),tg=document.getElementById('sb-toggle'),
+      ov=document.getElementById('sb-overlay'),cl=document.getElementById('sb-close');
+  if(!sb||!tg)return;
+  function open(){sb.classList.add('open');ov.classList.add('show');tg.setAttribute('aria-expanded','true')}
+  function close(){sb.classList.remove('open');ov.classList.remove('show');tg.setAttribute('aria-expanded','false')}
+  tg.addEventListener('click',function(){sb.classList.contains('open')?close():open()});
+  ov.addEventListener('click',close); if(cl)cl.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  function mark(){var h=location.hash||'#/';sb.querySelectorAll('a[href]').forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===h)})}
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){close();setTimeout(mark,60)})});
+  window.addEventListener('hashchange',mark); mark();
+})();
 </script>
 </body>
 </html>
