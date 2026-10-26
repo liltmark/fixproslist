@@ -380,6 +380,21 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
 .sb-toggle{position:fixed;left:12px;bottom:14px;z-index:55;background:var(--good,#177245);color:#fff;border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .sb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:59;opacity:0;pointer-events:none;transition:opacity .25s}
 .sb-overlay.show{opacity:1;pointer-events:auto}
+.sb-agent{margin:14px;padding:13px;border:1.5px solid var(--line,#e5e7eb);border-radius:12px;background:var(--surface2,#f6f8f7)}
+.sb-agent h3{margin:0 0 2px;font-size:.95rem}
+.sb-agent-sub{margin:0 0 10px;font-size:.78rem;color:var(--ink2)}
+.agent-msgs{max-height:210px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;margin-bottom:9px}
+.agent-msg{padding:8px 10px;border-radius:10px;font-size:.83rem;line-height:1.45;max-width:95%}
+.agent-msg.bot{background:#fff;border:1px solid var(--line,#e5e7eb);align-self:flex-start}
+.agent-msg.me{background:var(--good,#177245);color:#fff;align-self:flex-end}
+.agent-msg a{color:var(--good,#177245);font-weight:700}
+.agent-msg.me a{color:#fff}
+.agent-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.agent-chips button{border:1px solid var(--line,#e5e7eb);background:#fff;border-radius:999px;padding:5px 10px;font-size:.75rem;cursor:pointer;font-weight:600}
+.agent-chips button:hover{background:var(--good-bg,#e3f2e8)}
+.agent-form{display:flex;gap:6px}
+.agent-form input{flex:1;min-width:0;border:1px solid var(--line,#e5e7eb);border-radius:9px;padding:8px 10px;font-size:.85rem}
+.agent-form button{background:var(--good,#177245);color:#fff;border:0;border-radius:9px;padding:8px 13px;font-weight:700;cursor:pointer}
 @media (min-width:1200px){.sidebar{transform:none}body{padding-left:264px}.sb-toggle,.sb-overlay,.sb-close{display:none}}
 </style>
 </head>
@@ -450,6 +465,21 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
     <a href="#/privacy">Privacy Policy</a>
     <a href="#/terms">Terms</a>
   </nav>
+  <section class="sb-agent" aria-label="Site agent">
+    <h3>🤖 Ask FixPros — Site Agent</h3>
+    <p class="sb-agent-sub">Instant answers about services, free listings and partnering. Type your question below.</p>
+    <div class="agent-msgs" id="agent-msgs" aria-live="polite"></div>
+    <div class="agent-chips" id="agent-chips">
+      <button type="button" data-q="How do I list my business?">List my business</button>
+      <button type="button" data-q="Is listing free?">Is it free?</button>
+      <button type="button" data-q="I need a plumber">I need a plumber</button>
+      <button type="button" data-q="How do partners earn?">Partner earnings</button>
+    </div>
+    <form class="agent-form" id="agent-form">
+      <input id="agent-input" type="text" placeholder="Ask a question…" autocomplete="off" aria-label="Ask the site agent a question">
+      <button type="submit">Send</button>
+    </form>
+  </section>
   <div class="sb-cta">
     <p>Are you a pro? Get listed free and start receiving real customer calls.</p>
     <a class="btn btn-accent btn-sm" href="#/add-your-business">List Your Business — Free</a>
@@ -1719,6 +1749,70 @@ route();
   function mark(){var h=location.hash||'#/';sb.querySelectorAll('a[href]').forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===h)})}
   sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){close();setTimeout(mark,60)})});
   window.addEventListener('hashchange',mark); mark();
+})();
+</script>
+
+<script>
+/* ===== Sidebar Site Agent — built-in instant answers (no backend) ===== */
+(function(){
+  var box=document.getElementById('agent-msgs'), form=document.getElementById('agent-form'),
+      input=document.getElementById('agent-input'), chips=document.getElementById('agent-chips');
+  if(!box||!form||!input) return;
+  function esc(s){return s.replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function add(html,who){
+    var d=document.createElement('div'); d.className='agent-msg '+who; d.innerHTML=html;
+    box.appendChild(d); box.scrollTop=box.scrollHeight;
+  }
+  var PROS={
+    plumbing:{name:'Plumbing',phone:'(844) 578-1727',href:'#/miami/plumbing'},
+    electrical:{name:'Electrical',phone:'(866) 687-4517',href:'#/miami/electrical'},
+    'garage doors':{name:'Garage Doors',phone:'(831) 293-1196',href:'#/miami/garage-doors'},
+    roofing:{name:'Roofing',phone:'(844) 211-0179',href:'#/miami/roofing'},
+    appliances:{name:'Appliance Repair',phone:'(323) 831-1502',href:'#/miami/appliances'},
+    hvac:{name:'HVAC',phone:'(858) 955-0579',href:'#/miami/hvac'},
+    painting:{name:'Painting',phone:'(321) 478-0719',href:'#/miami/painting'},
+    emergency:{name:'24/7 Emergency',phone:'(386) 296-6181',href:'#/miami/emergency'}
+  };
+  function proAnswer(p){
+    return 'You can reach a <b>'+p.name+'</b> pro right now — call <a href="tel:+1'+p.phone.replace(/[^0-9]/g,'')+'">'+p.phone+'</a> (24/7 dispatch), or see <a href="'+p.href+'">'+p.name+' pros in Miami</a>. You pay the business directly — we never take advance payments.';
+  }
+  function answer(raw){
+    var q=' '+raw.toLowerCase()+' ';
+    function has(){for(var i=0;i<arguments.length;i++){if(q.indexOf(arguments[i])>-1)return true}return false}
+    if(has('water heater')) return 'A failing water heater usually warns you first — rumbling, rusty water, puddles at the base. Read <a href="#/blog/signs-your-water-heater-is-about-to-fail">7 Signs Your Water Heater Is About to Fail</a>, or call a plumbing pro now: <a href="tel:+18445781727">(844) 578-1727</a>.';
+    if(has('roof leak','new roof','roof repair','replace my roof','roof replacement')) return 'One leak does not always mean a new roof — our guide walks you through the decision: <a href="#/blog/new-roof-vs-roof-repair-how-to-decide">New Roof vs Roof Repair</a>. The roofing pros listed here focus on new installations and full replacements — call <a href="tel:+18442110179">(844) 211-0179</a> for a free written quote.';
+    if(has('how much','plumber cost','price of','cost of a plumber')) return 'There is no single price — it depends on the job. This guide explains exactly what you are paying for: <a href="#/blog/how-much-does-a-plumber-cost-2026">How Much Does a Plumber Cost in 2026?</a> For a real quote on your job, call <a href="tel:+18445781727">(844) 578-1727</a>.';
+    if(has('plumb')) return proAnswer(PROS.plumbing);
+    if(has('electric')) return proAnswer(PROS.electrical);
+    if(has('garage')) return proAnswer(PROS['garage doors']);
+    if(has('roof')) return proAnswer(PROS.roofing);
+    if(has('appliance','fridge','washer','dryer','oven')) return proAnswer(PROS.appliances);
+    if(has('hvac','air condition',' ac ','heating','furnace')) return proAnswer(PROS.hvac);
+    if(has('paint')) return proAnswer(PROS.painting);
+    if(has('emergency','urgent','burst','flood')) return proAnswer(PROS.emergency);
+    if(has('list my','add my','add a business','list a business','get listed','sign up my')) return 'Listing is simple and free: open <a href="#/add-your-business">List Your Business</a>, fill in your business name, contact, service and city, and submit. We review every listing by hand, then it goes live — no card, no contract, free forever.';
+    if(has('free','cost to list','charge','fee')) return 'Yes — a Published listing on FixProsList is completely free, forever. No card, no contract, no listing fee. Paid options (the Advertised tier) are optional extras for pros who want top placement. See <a href="#/advertise">Advertise</a> for details.';
+    if(has('advertis','sponsor','featured','promote my','top placement')) return 'The <b>Advertised</b> tier puts your business at the top with a Sponsored label — you only pay for real customer calls, and junk or fake calls are never charged. Details are on the <a href="#/advertise">Advertise</a> page, or email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a>.';
+    if(has('partner','earn','job','work from home','agent','dashboard','commission','80%')) return 'Partners publish listings from our <a href="#/listing-pool">Listing Pool</a> and earn on every real customer call their listings bring in — a fully transparent <b>80% partner / 20% platform</b> split, tracked in your own <a href="#/partner-dashboard">Partner Dashboard</a> (preview is live now). No fees, no investment. To join, email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — every partner is approved by our team personally.';
+    if(has('how it works','how does','what is fixproslist','about the site')) return 'FixProsList is a home-services directory: homeowners find a local pro and call them directly; pros get listed free and receive real customer calls. Three steps — search a service, pick a pro, call. Businesses can <a href="#/add-your-business">get listed free</a> in minutes.';
+    if(has('contact','email','phone number for you','human','talk to someone','support')) return 'You can email us any time at <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — a real person reads every message. If you need a pro right now, tell me the service (plumbing, roofing, electrical…) and I will give you the direct number.';
+    if(has('area','cities','cover','where','miami','florida','location')) return 'We are live in the Miami area first and growing across the USA, service by service. Browse what is live now on <a href="#/browse">Find a Pro</a> — and if your city is not covered yet, a free listing from a local pro is how it gets covered.';
+    if(has('hello',' hi ','hey','salam','assalam')) return 'Hello! 👋 I am the FixProsList site agent. Ask me about finding a pro, listing your business for free, advertising, or earning as a partner.';
+    if(has('thank','shukria')) return 'You are very welcome! If anything else comes up — a pro, a listing, a partnership — I am right here in the sidebar.';
+    return 'I want to give you the right answer, not a guess. I can help with: <b>finding a pro</b> (tell me the service), <b>listing your business free</b>, <b>advertising</b>, or <b>partner earnings</b>. For anything else, email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> and a person will reply.';
+  }
+  add('Hi! I am the FixProsList site agent 🤖 Ask me anything — finding a pro, free listings, or earning as a partner.','bot');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=input.value.trim(); if(!v) return;
+    add(esc(v),'me'); input.value='';
+    setTimeout(function(){ add(answer(v),'bot'); },250);
+  });
+  if(chips) chips.addEventListener('click',function(e){
+    var b=e.target.closest ? e.target.closest('[data-q]') : null; if(!b) return;
+    add(esc(b.getAttribute('data-q')),'me');
+    setTimeout(function(){ add(answer(b.getAttribute('data-q')),'bot'); },250);
+  });
 })();
 </script>
 </body>
