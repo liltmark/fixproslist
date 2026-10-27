@@ -1771,7 +1771,7 @@ function wireForm(formId, successId, kind){
       if (key) data[key] = el.value;
     });
     if (data["Email"]) data._replyto = data["Email"];
-    data._subject = kind === "job" ? "New JOB POST - FixProsList" : "New LISTING submission - FixProsList";
+    data._subject = kind === 'job' ? 'New JOB POST - FixProsList' : (kind === 'apply' ? 'New WORK APPLICATION - FixProsList' : 'New LISTING submission - FixProsList');
     data._template = "table";
     data._captcha = "false";
     data._honey = "";
@@ -1796,6 +1796,7 @@ function wireForm(formId, successId, kind){
 }
   wireForm("add-form", "add-success", "listing");
   wireForm("job-form", "job-success", "job");
+  wireForm('apply-form', 'apply-success', 'apply');
 
 /* Partner Dashboard preview: sample live-call timer + recording note.
    Preview only — no real calls, recordings or accounts behind this. */
@@ -1876,7 +1877,7 @@ route();
     if(has('list my','add my','add a business','list a business','get listed','sign up my')) return 'Listing is simple and free: open <a href="#/add-your-business">List Your Business</a>, fill in your business name, contact, service and city, and submit. We review every listing by hand, then it goes live — no card, no contract, free forever.';
     if(has('free','cost to list','charge','fee')) return 'Yes — a Published listing on FixProsList is completely free, forever. No card, no contract, no listing fee. Paid options (the Advertised tier) are optional extras for pros who want top placement. See <a href="#/advertise">Advertise</a> for details.';
     if(has('advertis','sponsor','featured','promote my','top placement')) return 'The <b>Advertised</b> tier puts your business at the top with a Sponsored label — you only pay for real customer calls, and junk or fake calls are never charged. Details are on the <a href="#/advertise">Advertise</a> page, or email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a>.';
-    if(has('partner','earn','job','work from home','agent','dashboard','commission','80%')) return 'Partners publish listings from our <a href="#/listing-pool">Listing Pool</a> and earn on every real customer call their listings bring in — a fully transparent <b>80% partner / 20% platform</b> split, tracked in your own <a href="#/partner-dashboard">Partner Dashboard</a> (preview is live now). No fees, no investment. To join, email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — every partner is approved by our team personally.';
+    if(has('partner','earn','job','work from home','agent','dashboard','commission','80%')) return 'Partners publish listings from our <a href="#/listing-pool">Listing Pool</a> and earn on every real customer call their listings bring in — a fully transparent <b>80% partner / 20% platform</b> split, tracked in your own <a href="#/partner-dashboard">Partner Dashboard</a> (preview is live now). No fees, no investment. To join, fill in the short application form on the <a href="#/listing-pool">Listing Pool page</a> — every partner is approved by our team personally.';
     if(has('how it works','how does','what is fixproslist','about the site')) return 'FixProsList is a home-services directory: homeowners find a local pro and call them directly; pros get listed free and receive real customer calls. Three steps — search a service, pick a pro, call. Businesses can <a href="#/add-your-business">get listed free</a> in minutes.';
     if(has('contact','email','phone number for you','human','talk to someone','support')) return 'You can email us any time at <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — a real person reads every message. If you need a pro right now, tell me the service (plumbing, roofing, electrical…) and I will give you the direct number.';
     if(has('area','cities','cover','where','miami','florida','location')) return 'We are live in the Miami area first and growing across the USA, service by service. Browse what is live now on <a href="#/browse">Find a Pro</a> — and if your city is not covered yet, a free listing from a local pro is how it gets covered.';
