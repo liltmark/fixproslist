@@ -456,6 +456,7 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
   <nav class="sb-sec" aria-label="Partners">
     <h3>For Partners</h3>
     <a href="#/partner-dashboard">Partner Dashboard</a>
+    <a href="#/listing-pool">Apply to Work With Us</a>
     <a href="#/listing-pool">Listing Pool</a>
   </nav>
   <nav class="sb-sec" aria-label="Company">
@@ -623,7 +624,61 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
         </div>
         <a class="btn btn-accent" href="#/partner-dashboard">Partner Dashboard — Preview</a>
       </div>
-    </section>
+      <div class="sec-head" style="margin-top:52px">
+        <div>
+          <h2>Apply to Work With Us</h2>
+          <p>Want to earn by publishing listings? Apply below — you can work from any country. We review every application by hand and contact approved partners on WhatsApp. <<b>No fees, no deposit, ever.</b> You are paid only for real customer calls, after the network clears them — a fully transparent 80% partner / 20% platform split.</p>
+        </div>
+      </div>
+      <div class="form-card" style="max-width:840px">
+        <div class="success" id="apply-success" role="status">
+          <b>Application received.</b><br />
+          Thanks for applying. We review every application by hand; if you are approved, we will contact you on WhatsApp with your first steps.
+        </div>
+        <form id="apply-form" novalidate>
+          <div class="frow">
+            <div class="field">
+              <label for="pf-name">Your full name <span class="req">*</span></label>
+              <input id="pf-name" required autocomplete="name" placeholder="Full name" />
+            </div>
+            <div class="field">
+              <label for="pf-whatsapp">WhatsApp number <span class="req">*</span></label>
+              <input id="pf-whatsapp" type="tel" required autocomplete="tel" placeholder="+92 300 1234567" />
+              <span class="hint">With country code. This is how we contact approved partners.</span>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="pf-city">Your city <span class="req">*</span></label>
+              <input id="pf-city" required placeholder="e.g. Lahore" />
+            </div>
+            <div class="field">
+              <label for="pf-country">Your country <span class="req">*</span></label>
+              <input id="pf-country" required placeholder="e.g. Pakistan" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="pf-work">What work can you do? <span class="req">*</span></label>
+            <select id="pf-work" required>
+              <option value="">Choose one…</option>
+              <option>Publish listings online</option>
+              <option>Social media posting</option>
+              <option>Video making / editing</option>
+              <option>Calling / customer dealing</option>
+              <option>Other (tell us below)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pf-about">Anything else we should know?</label>
+            <textarea id="pf-about" placeholder="Your experience, how many hours a day you can work, anything else."></textarea>
+          </div>
+          <div class="notice">
+            <p><b>Honest terms:</b>  joining is free and there is never a deposit or fee. Earnings come only from real customer calls and are paid after the network clears them. One person = one partner profile; fake calls end the agreement.</p>
+          </div>
+          <button class="btn btn-accent" type="submit" style="width:100%;justify-content:center">Submit My Application</button>
+        </form>
+      </div>
+              </section>
   </div>
 </div>
 
