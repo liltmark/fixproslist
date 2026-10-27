@@ -1701,18 +1701,46 @@ document.getElementById("browse-filters").addEventListener("submit", function(e)
   renderBrowse();
 });
 
-function wireForm(formId, successId){
-  document.getElementById(formId).addEventListener("submit", function(e){
+function wireForm(formId, successId, kind){
+  var form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener("submit", function(e){
     e.preventDefault();
-    var form = this;
     if (!form.checkValidity()){ form.reportValidity(); return; }
-    document.getElementById(successId).classList.add("show");
-    form.reset();
-    document.getElementById(successId).scrollIntoView({ behavior:"smooth", block:"center" });
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : "";
+    var data = {};
+    form.querySelectorAll("input, select, textarea").forEach(function(el){
+      var lab = el.id ? form.querySelector('label[for=" + el.id + ""]') : null;
+      var key = lab ? lab.textContent.replace(/\*/g, "").replace(/\s+/g, " ").trim() : (el.name || el.id);
+      if (key) data[key] = el.value;
+    });
+    if (data["Email"]) data._replyto = data["Email"];
+    data._subject = kind === "job" ? "New JOB POST - FixProsList" : "New LISTING submission - FixProsList";
+    data._template = "table";
+    data._captcha = "false";
+    data._honey = "";
+    if (btn){ btn.disabled = true; btn.textContent = "Sending..."; }
+    fetch("https://formsubmit.co/ajax/info@fixproslist.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function(r){
+      if (!r.ok) throw new Error("send failed");
+      return r.json();
+    }).then(function(){
+      document.getElementById(successId).classList.add("show");
+      form.reset();
+      document.getElementById(successId).scrollIntoView({ behavior: "smooth", block: "center" });
+        }).catch(function(){
+      alert("Sorry - your submission could not be sent just now. Please try again in a moment, or email us at info@fixproslist.com.");
+    }).finally(function(){
+      if (btn){ btn.disabled = false; btn.textContent = btnText; }
+    });
   });
 }
-wireForm("add-form", "add-success");
-wireForm("job-form", "job-success");
+  wireForm("add-form", "add-success", "listing");
+  wireForm("job-form", "job-success", "job");
 
 /* Partner Dashboard preview: sample live-call timer + recording note.
    Preview only — no real calls, recordings or accounts behind this. */
