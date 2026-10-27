@@ -1711,7 +1711,7 @@ function wireForm(formId, successId, kind){
     var btnText = btn ? btn.textContent : "";
     var data = {};
     form.querySelectorAll("input, select, textarea").forEach(function(el){
-      var lab = el.id ? form.querySelector('label[for=" + el.id + ""]') : null;
+      var lab = (el.labels && el.labels.length) ? el.labels[0] : null;
       var key = lab ? lab.textContent.replace(/\*/g, "").replace(/\s+/g, " ").trim() : (el.name || el.id);
       if (key) data[key] = el.value;
     });
