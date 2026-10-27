@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Partner Sign Up & Login — FixProsList</title>
-<meta name="description" content="Create your free FixProsList partner account, verify with an email code, and track your application status.">
+<meta name="description" content="Create your free FixProsList partner account, verify from your email, and track your application status.">
 <style>
   :root{ --blue:#0b5fa5; --blue-dark:#084a82; --ink:#16303f; --muted:#5b7183; --line:#d7e3ec; --bg:#f4f8fb; --ok:#0d7a3f; --warn:#9a6a00; --err:#b3261e; }
   *{ box-sizing:border-box; }
@@ -31,7 +31,6 @@
   .msg.ok{ display:block; background:#e7f6ee; color:var(--ok); border:1px solid #bfe6cf; }
   .fine{ color:var(--muted); font-size:12.5px; line-height:1.55; margin-top:14px; }
   .hidden{ display:none !important; }
-  .code-input{ letter-spacing:8px; font-size:24px; text-align:center; font-weight:bold; }
   .row{ display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
   .row span:first-child{ color:var(--muted); }
   .row span:last-child{ font-weight:bold; text-align:right; word-break:break-word; }
@@ -39,6 +38,7 @@
   .badge.pending{ background:#fdf3d7; color:var(--warn); border:1px solid #ecd28a; }
   .badge.approved{ background:#e7f6ee; color:var(--ok); border:1px solid #bfe6cf; }
   .note{ background:#eef4f9; border:1px solid var(--line); border-radius:9px; padding:12px; font-size:13.5px; line-height:1.55; margin-top:16px; }
+  .bigmail{ font-size:44px; text-align:center; margin:6px 0 2px; }
 </style>
 </head>
 <body>
@@ -55,10 +55,10 @@
       <button id="tabLogin" type="button">Log In</button>
     </div>
 
-    <!-- STEP 1: details + send code -->
+    <!-- STEP 1: details + send link -->
     <div id="stepDetails">
       <h1 id="authTitle">Create your partner account</h1>
-      <p class="sub" id="authSub">Join free. We email you a 6-digit code to verify your account — no password to remember.</p>
+      <p class="sub" id="authSub">Join free. We email you a sign-in link — tap it and your account is verified. No password to remember.</p>
 
       <div id="signupFields">
         <label for="fName">Your full name</label>
@@ -72,23 +72,22 @@
       <label for="fEmail">Email address</label>
       <input id="fEmail" type="email" autocomplete="email" placeholder="you@example.com">
 
-      <button class="btn" id="btnSendCode" type="button">Send verification code</button>
+      <button class="btn" id="btnSend" type="button">Email me the sign-in link</button>
       <div class="msg" id="msgDetails"></div>
       <p class="fine">By continuing you agree to the partner rules: real listings only, one person = one profile, no fake calls. Joining is always free — we never charge partners any fee.</p>
     </div>
 
-    <!-- STEP 2: enter code -->
-    <div id="stepCode" class="hidden">
-      <h1>Enter your code</h1>
-      <p class="sub">We sent a 6-digit code to <b id="codeEmailShown"></b>. It can take a minute to arrive — check Spam/Promotions too.</p>
-      <label for="fCode">6-digit code</label>
-      <input id="fCode" class="code-input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="------">
-      <button class="btn" id="btnVerify" type="button">Verify &amp; continue</button>
-      <button class="btn ghost" id="btnResend" type="button">Resend code</button>
-      <div class="msg" id="msgCode"></div>
+    <!-- STEP 2: link sent -->
+    <div id="stepSent" class="hidden">
+      <div class="bigmail">✉️</div>
+      <h1 style="text-align:center;">Check your email</h1>
+      <p class="sub" style="text-align:center;">We sent a sign-in link to <b id="sentEmailShown"></b>.<br>Tap the link in that email — it verifies your account and opens your profile right here. The link can take a minute to arrive; check <b>Spam / Promotions</b> too, and open it in this same browser if you can.</p>
+      <button class="btn ghost" id="btnResend" type="button">Send the link again</button>
+      <button class="btn ghost" id="btnBack" type="button">Use a different email</button>
+      <div class="msg" id="msgSent"></div>
     </div>
 
-    <!-- STEP 2b: complete profile (login before profile existed) -->
+    <!-- STEP 2b: complete profile (signed in but no profile row yet) -->
     <div id="stepProfile" class="hidden">
       <h1>Complete your profile</h1>
       <p class="sub">One last step — tell us who you are so your application can be reviewed.</p>
@@ -106,7 +105,7 @@
   <!-- PROFILE VIEW -->
   <div class="card hidden" id="profileCard">
     <h1>My Partner Profile</h1>
-    <p class="sub">This is your application with FixProsList. Keep this page bookmarked — log in any time with your email code to check your status.</p>
+    <p class="sub">This is your application with FixProsList. Keep this page bookmarked — log in any time from your email link to check your status.</p>
     <div class="row"><span>Full name</span><span id="vName">—</span></div>
     <div class="row"><span>Email</span><span id="vEmail">—</span></div>
     <div class="row"><span>Mobile (WhatsApp)</span><span id="vMobile">—</span></div>
@@ -125,11 +124,14 @@
 (function(){
   var SUPABASE_URL = "https://xmfyeqeenadntdpszihx.supabase.co";
   var SUPABASE_KEY = "sb_publishable_6TOXqypn-w_ZLl2plDnX4Q_ljYcbzj6";
+  var REDIRECT = "https://fixproslist.com/partner.html";
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  var mode = "signup"; // or "login"
+  var mode = "signup";
   var pendingEmail = "";
+  var lastProfile = null;
   var resendTimer = null;
+  var handled = false;
 
   function $(id){ return document.getElementById(id); }
   function showMsg(id, text, ok){
@@ -137,10 +139,7 @@
     el.className = "msg " + (ok ? "ok" : "err");
   }
   function clearMsg(id){ var el = $(id); el.className = "msg"; el.textContent = ""; }
-  function setBusy(btn, busy, label){
-    btn.disabled = busy;
-    if(label){ btn.textContent = label; }
-  }
+  function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
   function setMode(m){
     mode = m;
@@ -149,16 +148,20 @@
     $("signupFields").classList.toggle("hidden", m !== "signup");
     $("authTitle").textContent = (m === "signup") ? "Create your partner account" : "Welcome back";
     $("authSub").textContent = (m === "signup")
-      ? "Join free. We email you a 6-digit code to verify your account — no password to remember."
-      : "Enter your email and we will send you a 6-digit login code.";
+      ? "Join free. We email you a sign-in link — tap it and your account is verified. No password to remember."
+      : "Enter your email and we will send you a sign-in link.";
     clearMsg("msgDetails");
   }
   $("tabSignup").addEventListener("click", function(){ setMode("signup"); });
   $("tabLogin").addEventListener("click", function(){ setMode("login"); });
 
-  function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+  function sendLink(email, profile){
+    var opts = { shouldCreateUser: true, emailRedirectTo: REDIRECT };
+    if(profile){ opts.data = profile; }
+    return sb.auth.signInWithOtp({ email: email, options: opts });
+  }
 
-  $("btnSendCode").addEventListener("click", function(){
+  $("btnSend").addEventListener("click", function(){
     clearMsg("msgDetails");
     var email = $("fEmail").value.trim().toLowerCase();
     if(!validEmail(email)){ showMsg("msgDetails", "Please enter a valid email address."); return; }
@@ -173,62 +176,47 @@
       profile = { full_name: name, mobile: mobile, city: city };
       try{ localStorage.setItem("fpl_pending_profile", JSON.stringify(profile)); }catch(e){}
     }
-    var btn = $("btnSendCode");
-    setBusy(btn, true, "Sending code…");
-    sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: true, data: profile || {} } })
-      .then(function(res){
-        setBusy(btn, false, "Send verification code");
-        if(res.error){ showMsg("msgDetails", "Could not send the code: " + res.error.message); return; }
-        pendingEmail = email;
-        $("codeEmailShown").textContent = email;
-        $("stepDetails").classList.add("hidden");
-        $("stepCode").classList.remove("hidden");
-        startResendCooldown();
-      })
-      .catch(function(err){
-        setBusy(btn, false, "Send verification code");
-        showMsg("msgDetails", "Something went wrong. Please try again.");
-      });
+    lastProfile = profile;
+    var btn = $("btnSend");
+    btn.disabled = true; btn.textContent = "Sending…";
+    sendLink(email, profile).then(function(res){
+      btn.disabled = false; btn.textContent = "Email me the sign-in link";
+      if(res.error){ showMsg("msgDetails", "Could not send the email: " + res.error.message); return; }
+      pendingEmail = email;
+      $("sentEmailShown").textContent = email;
+      $("stepDetails").classList.add("hidden");
+      $("stepSent").classList.remove("hidden");
+      startResendCooldown();
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = "Email me the sign-in link";
+      showMsg("msgDetails", "Something went wrong. Please try again.");
+    });
   });
 
   function startResendCooldown(){
     var btn = $("btnResend"); var left = 60;
-    btn.disabled = true; btn.textContent = "Resend code (" + left + "s)";
+    btn.disabled = true; btn.textContent = "Send the link again (" + left + "s)";
     if(resendTimer){ clearInterval(resendTimer); }
     resendTimer = setInterval(function(){
       left--;
-      if(left <= 0){ clearInterval(resendTimer); btn.disabled = false; btn.textContent = "Resend code"; }
-      else{ btn.textContent = "Resend code (" + left + "s)"; }
+      if(left <= 0){ clearInterval(resendTimer); btn.disabled = false; btn.textContent = "Send the link again"; }
+      else{ btn.textContent = "Send the link again (" + left + "s)"; }
     }, 1000);
   }
 
   $("btnResend").addEventListener("click", function(){
     if(!pendingEmail){ return; }
-    clearMsg("msgCode");
-    sb.auth.signInWithOtp({ email: pendingEmail, options: { shouldCreateUser: true } })
-      .then(function(res){
-        if(res.error){ showMsg("msgCode", "Could not resend: " + res.error.message); return; }
-        showMsg("msgCode", "A new code was sent to " + pendingEmail + ".", true);
-        startResendCooldown();
-      });
+    clearMsg("msgSent");
+    sendLink(pendingEmail, lastProfile).then(function(res){
+      if(res.error){ showMsg("msgSent", "Could not resend: " + res.error.message); return; }
+      showMsg("msgSent", "A new link was sent to " + pendingEmail + ".", true);
+      startResendCooldown();
+    });
   });
 
-  $("btnVerify").addEventListener("click", function(){
-    clearMsg("msgCode");
-    var token = $("fCode").value.replace(/\D/g,"");
-    if(token.length !== 6){ showMsg("msgCode", "Please enter the 6-digit code from your email."); return; }
-    var btn = $("btnVerify");
-    setBusy(btn, true, "Verifying…");
-    sb.auth.verifyOtp({ email: pendingEmail, token: token, type: "email" })
-      .then(function(res){
-        setBusy(btn, false, "Verify & continue");
-        if(res.error){ showMsg("msgCode", "That code did not work: " + res.error.message); return; }
-        afterLogin();
-      })
-      .catch(function(){
-        setBusy(btn, false, "Verify & continue");
-        showMsg("msgCode", "Something went wrong. Please try again.");
-      });
+  $("btnBack").addEventListener("click", function(){
+    $("stepSent").classList.add("hidden");
+    $("stepDetails").classList.remove("hidden");
   });
 
   $("btnSaveProfile").addEventListener("click", function(){
@@ -240,29 +228,39 @@
     if(mobile.replace(/\D/g,"").length < 10){ showMsg("msgProfile", "Please enter a valid mobile number with country code."); return; }
     if(city.length < 2){ showMsg("msgProfile", "Please enter your city."); return; }
     var btn = $("btnSaveProfile");
-    setBusy(btn, true, "Saving…");
+    btn.disabled = true; btn.textContent = "Saving…";
     sb.auth.getUser().then(function(u){
       var uid = u.data.user.id;
       sb.from("partners").insert({ id: uid, full_name: name, mobile: mobile, city: city })
         .then(function(res){
-          setBusy(btn, false, "Save my profile");
+          btn.disabled = false; btn.textContent = "Save my profile";
           if(res.error){ showMsg("msgProfile", "Could not save: " + res.error.message); return; }
           loadProfile();
         });
     });
   });
 
+  function profileFromUser(user){
+    var md = (user && user.user_metadata) || {};
+    if(md.full_name && md.mobile){
+      return { full_name: md.full_name, mobile: md.mobile, city: md.city || "" };
+    }
+    try{
+      var p = JSON.parse(localStorage.getItem("fpl_pending_profile") || "null");
+      if(p && p.full_name && p.mobile){ return p; }
+    }catch(e){}
+    return null;
+  }
+
   function afterLogin(){
     sb.auth.getUser().then(function(u){
       if(!u.data.user){ return; }
-      var uid = u.data.user.id;
-      sb.from("partners").select("id").eq("id", uid).maybeSingle().then(function(res){
+      var user = u.data.user;
+      sb.from("partners").select("id").eq("id", user.id).maybeSingle().then(function(res){
         if(res.data){ loadProfile(); return; }
-        // No profile row yet — use the sign-up details if we have them.
-        var pending = null;
-        try{ pending = JSON.parse(localStorage.getItem("fpl_pending_profile") || "null"); }catch(e){}
-        if(pending && pending.full_name){
-          sb.from("partners").insert({ id: uid, full_name: pending.full_name, mobile: pending.mobile, city: pending.city })
+        var pending = profileFromUser(user);
+        if(pending){
+          sb.from("partners").insert({ id: user.id, full_name: pending.full_name, mobile: pending.mobile, city: pending.city || "" })
             .then(function(r2){
               if(r2.error){ showCompleteProfile(); } else { loadProfile(); }
             });
@@ -274,8 +272,9 @@
   }
 
   function showCompleteProfile(){
+    $("authCard").classList.remove("hidden");
     $("stepDetails").classList.add("hidden");
-    $("stepCode").classList.add("hidden");
+    $("stepSent").classList.add("hidden");
     $("stepProfile").classList.remove("hidden");
   }
 
@@ -312,12 +311,16 @@
   }
 
   $("btnLogout").addEventListener("click", function(){
-    sb.auth.signOut().then(function(){ location.reload(); });
+    sb.auth.signOut().then(function(){ location.href = REDIRECT; });
   });
 
-  // On load: if already logged in, show the profile.
+  // Handle the return from the email link (session arrives in the URL),
+  // and any already-active session.
+  sb.auth.onAuthStateChange(function(event, session){
+    if(session && !handled){ handled = true; afterLogin(); }
+  });
   sb.auth.getSession().then(function(res){
-    if(res.data.session){ afterLogin(); }
+    if(res.data.session && !handled){ handled = true; afterLogin(); }
   });
 })();
 </script>
