@@ -422,6 +422,14 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
       <a href="#/advertise">Advertise</a>
       <a href="#/post-a-job">Post a Job</a>
       <a href="#/about">About</a>
+      <span id="hdr-auth-out" style="display:contents">
+        <a href="partner.html" id="hdr-login">Log In</a>
+        <a class="btn btn-navy btn-sm" href="partner.html" id="hdr-signup">Sign Up</a>
+      </span>
+      <span id="hdr-auth-in" style="display:none">
+        <a href="partner.html" id="hdr-dash">My Dashboard</a>
+        <a href="#" id="hdr-logout">Log Out</a>
+      </span>
       <a class="btn btn-accent btn-sm" href="#/add-your-business">List Your Business — Free</a>
     </nav>
   </div>
@@ -839,18 +847,30 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
   <div class="wrap">
     <div class="page-head">
       <h2>Add Your Business</h2>
-      <p>A <b>Published listing is completely free</b> — no card, no trial, no catch. Tell us about your business and we’ll review it before it goes live.</p>
+      <p>A <b>Published listing is completely free</b> — no card, no trial, no catch. It starts with a free FixProsList account: <b>one account covers listings in every category</b>, so you never register twice. Tell us about your business and we’ll review it before it goes live.</p>
     </div>
     <section class="block" style="padding-top:26px">
-      <div class="form-card">
+      <div class="notice" id="add-gate" style="display:none;max-width:680px" role="note">
+        <p><b>Listing a business starts with a free account.</b> Sign up or log in first — it takes a minute with an email code, no password to remember. One account lets you add listings in as many categories as you like and track each one's status (Pending review / Live) from your dashboard.</p>
+        <p style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-navy btn-sm" href="partner.html" data-return="/#/add-your-business">Sign Up — Free</a>
+          <a class="btn btn-ghost btn-sm" href="partner.html" data-return="/#/add-your-business">Log In</a>
+        </p>
+      </div>
+      <div class="form-card" id="add-card">
         <div class="success" id="add-success" role="status">
           <b>Received — every listing is reviewed before it goes live.</b><br />
-          Thanks for submitting. We review each business by hand; if anything is missing we’ll email you at the address you gave us.
+          Thanks for submitting. Your listing is saved to your account as <b>Pending review</b> — track it in <a href="partner.html">your dashboard</a>. We review each business by hand; if anything is missing we’ll email you at the address you gave us.
         </div>
         <form id="add-form" novalidate>
           <div class="field">
             <label for="af-name">Business name <span class="req">*</span></label>
             <input id="af-name" required autocomplete="organization" placeholder="e.g. Smith &amp; Sons Plumbing" />
+          </div>
+          <div class="field">
+            <label for="af-title">Listing title <span class="req">*</span></label>
+            <input id="af-title" required placeholder="e.g. Trusted Plumbers in Austin — Leaks, Drains &amp; Water Heaters" />
+            <span class="hint">Your listing headline. Every title must be unique — an angle + the service + your city works well.</span>
           </div>
           <div class="frow">
             <div class="field">
@@ -954,10 +974,17 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
       <p>Tell us what needs doing. <b>Local pros may contact you about your job</b> — you choose who to hire, and you pay the pro directly.</p>
     </div>
     <section class="block" style="padding-top:26px">
-      <div class="form-card">
+      <div class="notice" id="job-gate" style="display:none;max-width:680px" role="note">
+        <p><b>Post a Job starts with a free account.</b> Sign up first — it takes a minute with an email code, no password to remember. Then your job is saved to your account, and you can track its status (New / Approved / Done) any time from your dashboard.</p>
+        <p style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-navy btn-sm" href="partner.html" data-return="/#/post-a-job">Sign Up — Free</a>
+          <a class="btn btn-ghost btn-sm" href="partner.html" data-return="/#/post-a-job">Log In</a>
+        </p>
+      </div>
+      <div class="form-card" id="job-card">
         <div class="success" id="job-success" role="status">
           <b>Job received.</b><br />
-          Thanks — your job details have been noted. Local pros in the directory may contact you about it. Please don’t pay anyone in advance; pay your pro directly when the work is agreed or done.
+          Thanks — your job is saved to your account and its details have been noted. Local pros in the directory may contact you about it. Track its status any time in <a href="partner.html">your dashboard</a>. Please don’t pay anyone in advance; pay your pro directly when the work is agreed or done.
         </div>
         <form id="job-form" novalidate>
           <div class="frow">
@@ -979,6 +1006,23 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
             <div class="field">
               <label for="jf-city">City <span class="req">*</span></label>
               <input id="jf-city" required placeholder="e.g. Miami" />
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="jf-zip">ZIP code</label>
+              <input id="jf-zip" inputmode="numeric" autocomplete="postal-code" placeholder="e.g. 33139" />
+              <span class="hint">Helps pros confirm they cover your area.</span>
+            </div>
+            <div class="field">
+              <label for="jf-when">Preferred time</label>
+              <select id="jf-when">
+                <option value="Any time">Any time</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+                <option value="Weekend">Weekend</option>
+              </select>
             </div>
           </div>
           <div class="field">
@@ -1434,6 +1478,7 @@ function renderDetail(id){
       '<div class="avatar" aria-hidden="true">' + esc(l.business.charAt(0)) + '</div>' +
       '<div style="flex:1;min-width:220px"><h1 style="font-size:1.7rem;font-weight:900">' + esc(l.business) + '</h1>' +
       '<div class="svc" style="font-weight:700;color:var(--navy2)">' + esc(s.name) + ' · ' + esc(l.city) + ', ' + esc(l.state) + '</div>' +
+      (l.title ? '<div style="font-weight:600;margin-top:6px">' + esc(l.title) + '</div>' : '') +
       '<div class="meta" style="color:var(--ink2);font-size:.92rem;margin-top:4px">' + esc(l.hours) + '</div></div>' +
       '<div class="badges">' + (l.tier==="advertised" ? '<span class="badge badge-sponsored">★ Sponsored</span>' : '<span class="badge badge-free">Published</span>') + '<span class="badge badge-open">Open Now</span></div>' +
     '</div></div>' +
@@ -1959,8 +2004,8 @@ function wireForm(formId, successId, kind){
     });
   });
 }
-  wireForm("add-form", "add-success", "listing");
-  wireForm("job-form", "job-success", "job");
+  /* add-form and job-form are wired by the account script at the end of the
+     page (they require a signed-in account and also save to Supabase). */
   wireForm('apply-form', 'apply-success', 'apply');
 
 /* Partner Dashboard preview: sample live-call timer + recording note.
@@ -2061,6 +2106,233 @@ route();
     var b=e.target.closest ? e.target.closest('[data-q]') : null; if(!b) return;
     add(esc(b.getAttribute('data-q')),'me');
     setTimeout(function(){ add(answer(b.getAttribute('data-q')),'bot'); },250);
+  });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* ===== Accounts: header state, login-gated Post a Job + Add Your Business,
+   and live member listings merged into the directory =====
+   One account system for the whole site: Supabase Auth email codes, shared
+   with partner.html (same origin, same stored session). Jobs save to
+   public.jobs, listings to public.listings; the FormSubmit email alert
+   still fires for every submission, exactly as before. */
+(function(){
+  if (!window.supabase) return;
+  var SB_URL = "https://xmfyeqeenadntdpszihx.supabase.co";
+  var SB_KEY = "sb_publishable_6TOXqypn-w_ZLl2plDnX4Q_ljYcbzj6";
+  var sb = window.supabase.createClient(SB_URL, SB_KEY);
+  window.FPL_SB = sb;
+  var user = null, profile = null, ready = false;
+
+  function $(id){ return document.getElementById(id); }
+  function normTitle(t){ return String(t || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+
+  /* ----- header Sign Up / Log In <-> My Dashboard / Log Out ----- */
+  function paintHeader(){
+    var out = $("hdr-auth-out"), inn = $("hdr-auth-in");
+    if (!out || !inn) return;
+    out.style.display = user ? "none" : "contents";
+    inn.style.display = user ? "contents" : "none";
+  }
+  var logoutLink = $("hdr-logout");
+  if (logoutLink) logoutLink.addEventListener("click", function(e){
+    e.preventDefault();
+    sb.auth.signOut().then(function(){ location.reload(); });
+  });
+
+  /* ----- "sign up first, then come back here" handoff ----- */
+  document.addEventListener("click", function(e){
+    var a = e.target && e.target.closest ? e.target.closest("[data-return]") : null;
+    if (a){ try{ localStorage.setItem("fpl_return", a.getAttribute("data-return")); }catch(err){} }
+  });
+
+  /* ----- gates: Post a Job + Add Your Business need an account ----- */
+  function applyGates(){
+    if (!ready) return;
+    var jg = $("job-gate"), jc = $("job-card");
+    if (jg && jc){
+      jg.style.display = user ? "none" : "block";
+      jc.style.display = user ? "" : "none";
+      if (user && profile){
+        var nm = $("jf-name"); if (nm && !nm.value) nm.value = profile.full_name || "";
+        var ph = $("jf-phone"); if (ph && !ph.value) ph.value = profile.mobile || "";
+      }
+    }
+    var ag = $("add-gate"), ac = $("add-card");
+    if (ag && ac){
+      ag.style.display = user ? "none" : "block";
+      ac.style.display = user ? "" : "none";
+      if (user && profile){
+        var cn = $("af-contact"); if (cn && !cn.value) cn.value = profile.full_name || "";
+        var em = $("af-email"); if (em && !em.value) em.value = user.email || "";
+        var ct = $("af-city"); if (ct && !ct.value) ct.value = profile.city || "";
+      }
+    }
+  }
+  window.addEventListener("hashchange", function(){ setTimeout(applyGates, 30); });
+
+  /* ----- FormSubmit email alert (same payload shape as the old forms) ----- */
+  function fireFormSubmit(form, kind){
+    var data = {};
+    form.querySelectorAll("input, select, textarea").forEach(function(el){
+      var lab = (el.labels && el.labels.length) ? el.labels[0] : null;
+      var key = lab ? lab.textContent.replace(/\*/g, "").replace(/\s+/g, " ").trim() : (el.name || el.id);
+      if (key) data[key] = el.value;
+    });
+    if (user){ data["Account email"] = user.email; if (!data["Email"]) data._replyto = user.email; }
+    if (data["Email"]) data._replyto = data["Email"];
+    data._subject = kind === "job" ? "New JOB POST - FixProsList" : "New LISTING submission - FixProsList";
+    data._template = "table";
+    data._captcha = "false";
+    data._honey = "";
+    return fetch("https://formsubmit.co/ajax/info@fixproslist.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function(r){ if (!r.ok) throw new Error("send failed"); return r.json(); });
+  }
+  function finishForm(form, successId){
+    $(successId).classList.add("show");
+    form.reset();
+    applyGates(); // re-prefill account fields cleared by reset
+    $(successId).scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  /* ----- Post a Job: save to public.jobs, then fire the email alert ----- */
+  var jobForm = $("job-form");
+  if (jobForm) jobForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!user){ applyGates(); window.scrollTo(0, 0); return; }
+    if (!jobForm.checkValidity()){ jobForm.reportValidity(); return; }
+    var btn = jobForm.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : "";
+    if (btn){ btn.disabled = true; btn.textContent = "Posting..."; }
+    sb.from("jobs").insert({
+      user_id: user.id, email: user.email,
+      full_name: $("jf-name").value.trim(),
+      phone: $("jf-phone").value.trim(),
+      service: $("jf-service").value,
+      city: $("jf-city").value.trim(),
+      zip: $("jf-zip").value.trim() || null,
+      description: $("jf-desc").value.trim(),
+      preferred_time: $("jf-when").value || null
+    }).then(function(res){
+      if (res.error) throw new Error(res.error.message);
+      return fireFormSubmit(jobForm, "job");
+    }).then(function(){
+      finishForm(jobForm, "job-success");
+    }).catch(function(err){
+      alert("Sorry - your job could not be posted just now (" + (err && err.message ? err.message : "send failed") + "). Please try again in a moment, or email us at info@fixproslist.com.");
+    }).finally(function(){
+      if (btn){ btn.disabled = false; btn.textContent = btnText; }
+    });
+  });
+
+  /* ----- Listing title duplicate check (static data + database) ----- */
+  function titleTaken(title, city){
+    var n = normTitle(title);
+    var i;
+    for (i = 0; i < LISTINGS.length; i++){
+      if (normTitle(LISTINGS[i].business) === n) return Promise.resolve(true);
+      if (LISTINGS[i].title && normTitle(LISTINGS[i].title) === n) return Promise.resolve(true);
+    }
+    for (i = 0; i < POOL_KITS.length; i++){
+      if (normTitle(POOL_KITS[i].title.replace(/\[City\]/g, city || "")) === n) return Promise.resolve(true);
+    }
+    return sb.rpc("listing_title_taken", { p_title: title }).then(function(res){
+      if (!res.error) return !!res.data;
+      return sb.from("listings").select("title").then(function(r2){
+        if (r2.error) return false;
+        return (r2.data || []).some(function(r){ return normTitle(r.title) === n; });
+      });
+    });
+  }
+
+  /* ----- Add Your Business: save to public.listings, then email alert ----- */
+  var addForm = $("add-form");
+  if (addForm) addForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!user){ applyGates(); window.scrollTo(0, 0); return; }
+    if (!addForm.checkValidity()){ addForm.reportValidity(); return; }
+    var btn = addForm.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : "";
+    var title = $("af-title").value.trim();
+    var city = $("af-city").value.trim();
+    if (btn){ btn.disabled = true; btn.textContent = "Checking title..."; }
+    titleTaken(title, city).then(function(taken){
+      if (taken) throw new Error("That listing title is already used - every title must be unique. Please change the angle or wording and submit again.");
+      if (btn) btn.textContent = "Sending...";
+      return sb.from("listings").insert({
+        owner_id: user.id, email: user.email,
+        business_name: $("af-name").value.trim(),
+        contact_name: $("af-contact").value.trim() || null,
+        title: title,
+        category: $("af-service").value,
+        city: city,
+        state: $("af-state").value.trim().toUpperCase() || null,
+        phone: $("af-phone").value.trim(),
+        website: $("af-website").value.trim() || null,
+        description: $("af-desc").value.trim()
+      }).then(function(res){
+        if (res.error) throw new Error(res.error.message);
+        return fireFormSubmit(addForm, "listing");
+      });
+    }).then(function(){
+      finishForm(addForm, "add-success");
+    }).catch(function(err){
+      alert("Sorry - your listing could not be submitted just now (" + (err && err.message ? err.message : "send failed") + "). Please try again in a moment, or email us at info@fixproslist.com.");
+    }).finally(function(){
+      if (btn){ btn.disabled = false; btn.textContent = btnText; }
+    });
+  });
+
+  /* ----- merge live member listings into the directory ----- */
+  function mergeLiveListings(){
+    sb.from("listings").select("*").eq("status", "live").order("created_at", { ascending: false })
+      .then(function(res){
+        if (res.error || !res.data || !res.data.length) return;
+        var known = {};
+        LISTINGS.forEach(function(l){ known[l.id] = true; });
+        var added = false;
+        res.data.forEach(function(r){
+          var id = "db-" + r.id;
+          if (known[id]) return;
+          LISTINGS.push({
+            id: id, business: r.business_name, title: r.title, service: r.category,
+            phone: r.phone, tier: "published",
+            city: r.city, state: r.state || "",
+            area: r.city + (r.state ? ", " + r.state : "") + " & surrounding area",
+            hours: "Call for today's hours",
+            about: r.description, website: r.website || ""
+          });
+          added = true;
+        });
+        if (!added) return;
+        renderHome();
+        var h = location.hash || "";
+        if (h.indexOf("#/browse") === 0) renderBrowse();
+        else if (h.indexOf("#/listing/") === 0 || /^#\/[a-z0-9-]+\/[a-z-]+$/.test(h)) route();
+      });
+  }
+
+  /* ----- session bootstrap ----- */
+  function loadProfile(){
+    if (!user){ profile = null; ready = true; paintHeader(); applyGates(); return; }
+    sb.from("partners").select("*").eq("id", user.id).maybeSingle().then(function(res){
+      profile = res.data || null;
+      ready = true; paintHeader(); applyGates();
+    });
+  }
+  sb.auth.getSession().then(function(res){
+    user = (res.data.session && res.data.session.user) || null;
+    loadProfile();
+    mergeLiveListings();
+  });
+  sb.auth.onAuthStateChange(function(_event, session){
+    user = (session && session.user) || null;
+    loadProfile();
   });
 })();
 </script>
