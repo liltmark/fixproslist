@@ -55,6 +55,18 @@
   .two{ display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
   @media (max-width:560px){ .two{ grid-template-columns:1fr; } }
   .quicklinks{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  /* Calls & Balance additions (Direct Calls) — same palette as :root vars */
+  .msg.warn{ display:block; background:#fdf3d7; color:var(--warn); border:1px solid #ecd28a; }
+  .calls-table{ width:100%; border-collapse:collapse; font-size:14px; margin-top:12px; }
+  .calls-table th{ text-align:left; color:var(--muted); font-weight:bold; padding:8px 6px; border-bottom:2px solid var(--line); white-space:nowrap; }
+  .calls-table td{ padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .calls-table .num{ white-space:nowrap; }
+  .calls-table .free{ color:var(--muted); }
+  .badge.billable{ background:#e7f6ee; color:var(--ok); border:1px solid #bfe6cf; }
+  .badge.free{ background:#eef4f9; color:var(--muted); border:1px solid var(--line); }
+  .badge.paused{ background:#fdecea; color:var(--err); border:1px solid #f3c2bf; }
+  .badge.active{ background:#e7f6ee; color:var(--ok); border:1px solid #bfe6cf; }
+  @media (max-width:560px){ .calls-table th:nth-child(2), .calls-table td:nth-child(2){ display:none; } }
 </style>
 </head>
 <body>
@@ -62,6 +74,13 @@
   <div class="brand">
     <a href="https://fixproslist.com/">FixProsList</a>
     <p>One free account for everything — post jobs, add listings in any category, track every status.</p>
+  </div>
+
+  <!-- DIRECT CALLS INTRO (join page — the model, before sign-up) -->
+  <div class="card" id="directCallsCard">
+    <h2 style="margin:0 0 6px;font-size:20px;color:var(--blue)">For pros: get customer calls with Direct Calls</h2>
+    <p class="sub">Your FixProsList listing is <b>free forever</b>. With <b>Direct Calls</b>, we put our own tracked number on your listing — calls ring straight to your phone, every call is recorded, and you pay one flat rate only for <b>qualified calls</b> (a new customer in your area, on the phone 90+ seconds about a real job; 60 seconds for appliance repair). Launch rates for founding partners: Plumbing $25 · Electrical $20 · Roofing $35 · Flooring $20 · HVAC $25 · Garage Door $25 · Appliance Repair $10 per qualified call. It's prepaid — start with $100, no contract, no monthly fee, and unused balance is refunded if you ever leave. Spam, wrong numbers and duplicates are never charged.</p>
+    <p class="fine" style="margin-top:0">Full rates and the exact billing rules: <a href="partner-rules.html"><b>Partner Rules — Direct Calls</b></a>. Create your free account below to get started.</p>
   </div>
 
   <!-- AUTH VIEW -->
@@ -90,7 +109,7 @@
 
       <button class="btn" id="btnSendCode" type="button">Send verification code</button>
       <div class="msg" id="msgDetails"></div>
-      <p class="fine">Accounts are reviewed by our team after sign-up (Pending Approval → Approved). Jobs and listings are also reviewed before anything goes public. Joining is always free — we never charge any fee.</p>
+      <p class="fine">Accounts are reviewed by our team after sign-up (Pending Approval → Approved). Jobs and listings are also reviewed before anything goes public. Joining is always free — there are no sign-up or listing fees. Pros on Direct Calls pay only for qualified calls; see the <a href="partner-rules.html">Partner Rules</a>.</p>
     </div>
 
     <!-- STEP 2: enter code -->
@@ -192,12 +211,34 @@
       <div class="msg" id="msgListing"></div>
     </div>
 
+    <!-- CALLS & BALANCE (Direct Calls) -->
+    <div class="card hidden" id="callsCard">
+      <h2 style="margin:0 0 6px;font-size:20px;color:var(--blue)">Calls &amp; Balance</h2>
+      <p class="sub">Your Direct Calls balance and call log. You are only charged for <b>qualified calls</b> — a new customer in your area, on the phone past your trade's minimum (90 sec, 60 for appliance repair), with a real job. Spam, wrong numbers, duplicates and short calls are always free. Every charged call has a recording. Full rules: <a href="partner-rules.html">Partner Rules</a>.</p>
+
+      <div class="row"><span>Current balance</span><span id="cbBalance" style="font-weight:bold">—</span></div>
+      <div id="cbNumbers"></div>
+
+      <div class="msg warn" id="cbLowWarn" style="display:none">⚠ Your balance is below $25. Calls pause automatically when your balance can't cover another call — top up soon so you don't miss a customer.</div>
+      <div class="msg err" id="cbPausedWarn" style="display:none">Your call number is currently <b>paused</b> because your balance ran out. Top up to resume calls — your listing itself stays live and free.</div>
+
+      <!-- TODO: replace href with the live Stripe payment link for top-ups. -->
+      <a class="btn accent" id="btnTopUp" href="#" onclick="return false;">Top Up Balance</a>
+      <p class="fine">Prepaid only — no monthly fee, no surprise bills. Unused balance is refunded if you ever leave.</p>
+
+      <h3 style="margin:20px 0 4px;font-size:16px;color:var(--blue)">Recent calls</h3>
+      <div id="callsList"><p class="empty-note">Loading your calls…</p></div>
+
+      <h3 style="margin:20px 0 4px;font-size:16px;color:var(--blue)">Balance history</h3>
+      <div id="cbTxList"><p class="empty-note">Loading…</p></div>
+    </div>
+
     <div class="card">
       <button class="btn ghost" id="btnLogout" type="button" style="margin-top:0">Log out</button>
     </div>
   </div>
 
-  <p class="fine" style="text-align:center;">Questions? Email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — FixProsList, Miami Beach, FL.</p>
+  <p class="fine" style="text-align:center;">Questions? Email <a href="mailto:info@fixproslist.com">info@fixproslist.com</a> — FixProsList, Miami Beach, FL. · <a href="partner-rules.html">Partner Rules — Direct Calls</a></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
@@ -424,6 +465,7 @@
         $("dashWrap").classList.remove("hidden");
         loadJobs();
         loadListings();
+        loadCallsSection();
       });
     });
   }
@@ -547,6 +589,113 @@
   $("btnLogout").addEventListener("click", function(){
     sb.auth.signOut().then(function(){ location.reload(); });
   });
+
+  /* ---------- Calls & Balance (Direct Calls) ---------- */
+  // Data: public.tracked_numbers / calls / partner_balances /
+  // balance_transactions (RLS limits every query to the signed-in partner).
+  // Safe before the call tables exist / before Direct Calls is active:
+  // failed queries simply render the $0.00 / empty states below.
+  var CB_LOW_BALANCE = 25; // matches the Partner Rules + webhook threshold (USD)
+
+  function cbMoney(n){ return "$" + Number(n || 0).toFixed(2); }
+  function cbDuration(s){
+    s = Number(s || 0);
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+  function cbDate(iso){
+    try { return new Date(iso).toLocaleString("en-US", { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" }); }
+    catch(e){ return iso || "—"; }
+  }
+  function cbEsc(s){ return esc(s); }
+
+  function loadCallsSection(){
+    var card = $("callsCard");
+    if (!card || !currentUser) return;
+    card.classList.remove("hidden");
+    var user = currentUser;
+
+    // Balance
+    sb.from("partner_balances").select("balance, updated_at")
+      .eq("partner_id", user.id).maybeSingle().then(function(balResp){
+        var balance = balResp.data ? Number(balResp.data.balance) : 0;
+        $("cbBalance").textContent = cbMoney(balance);
+
+        // Tracked number(s)
+        return sb.from("tracked_numbers")
+          .select("twilio_number, forwarding_to, category, price_per_call, status")
+          .eq("partner_id", user.id).order("created_at", { ascending: true })
+          .then(function(numResp){
+            var numbers = numResp.data || [];
+            var numHtml = "", anyPaused = false;
+            numbers.forEach(function(n){
+              if (n.status === "paused") anyPaused = true;
+              numHtml += '<div class="row"><span>Your FixProsList number</span><span>' +
+                cbEsc(n.twilio_number) + ' <span class="badge ' + (n.status === "active" ? "active" : "paused") + '">' +
+                (n.status === "active" ? "Active" : "Paused") + "</span></span></div>";
+              if (n.price_per_call != null)
+                numHtml += '<div class="row"><span>Your locked rate</span><span>' + cbMoney(n.price_per_call) + " per qualified call</span></div>";
+            });
+            if (!numbers.length)
+              numHtml = '<div class="note">Direct Calls is not active on your account yet. Your tracked number is assigned when your first balance is loaded — once it is active it will appear here, and calls to your listing will start ringing your phone.</div>';
+            $("cbNumbers").innerHTML = numHtml;
+
+            // Warnings
+            $("cbLowWarn").style.display =
+              (numbers.length && balance < CB_LOW_BALANCE && !anyPaused) ? "block" : "none";
+            $("cbPausedWarn").style.display = anyPaused ? "block" : "none";
+          });
+      });
+
+    // Call log (latest 50)
+    sb.from("calls")
+      .select("started_at, caller_number, duration_seconds, billable, charge_amount, recording_url, status")
+      .eq("partner_id", user.id).order("started_at", { ascending: false }).limit(50)
+      .then(function(callResp){
+        var calls = callResp.data || [];
+        var listEl = $("callsList");
+        if (!calls.length){
+          listEl.innerHTML = '<p class="empty-note">No calls yet. When a customer calls your FixProsList number, the call, its duration and its recording will show up here.</p>';
+        } else {
+          var rows = calls.map(function(c){
+            var charge = c.billable
+              ? cbMoney(c.charge_amount)
+              : '<span class="free">Free</span>';
+            var kind = c.billable
+              ? '<span class="badge billable">Qualified</span>'
+              : '<span class="badge free">' + cbEsc(c.status === "completed" ? "Not qualified" : c.status) + "</span>";
+            var rec = c.recording_url
+              ? '<a href="' + cbEsc(c.recording_url) + '" target="_blank" rel="noopener">▶ Play</a>'
+              : '<span class="free">—</span>';
+            return "<tr><td class='num'>" + cbDate(c.started_at) + "</td><td class='num'>" +
+              cbEsc(c.caller_number || "Unknown") + "</td><td class='num'>" + cbDuration(c.duration_seconds) +
+              "</td><td>" + kind + "</td><td class='num'>" + charge + "</td><td>" + rec + "</td></tr>";
+          }).join("");
+          listEl.innerHTML = '<table class="calls-table"><thead><tr><th>Date</th><th>Caller</th><th>Length</th><th></th><th>Charge</th><th>Recording</th></tr></thead><tbody>' +
+            rows + "</tbody></table>";
+        }
+      });
+
+    // Balance history (latest 20)
+    sb.from("balance_transactions")
+      .select("created_at, type, amount, note")
+      .eq("partner_id", user.id).order("created_at", { ascending: false }).limit(20)
+      .then(function(txResp){
+        var txs = txResp.data || [];
+        var txEl = $("cbTxList");
+        if (!txs.length){
+          txEl.innerHTML = '<p class="empty-note">No balance activity yet.</p>';
+        } else {
+          txEl.innerHTML = txs.map(function(t){
+            var sign = Number(t.amount) >= 0 ? "+" : "−";
+            var label = t.type === "topup" ? "Top-up" : (t.type === "deduction" ? "Qualified call" : "Refund / adjustment");
+            return '<div class="item"><div style="font-weight:bold;font-size:15px">' + label +
+              ' <span style="float:right">' + sign + cbMoney(Math.abs(Number(t.amount))) + "</span></div>" +
+              '<div style="color:var(--muted);font-size:13px;margin-top:3px;line-height:1.5">' + cbDate(t.created_at) + (t.note ? " · " + cbEsc(t.note) : "") + "</div></div>";
+          }).join("");
+        }
+      });
+  }
 
   // On load: if already logged in, show the dashboard.
   sb.auth.getSession().then(function(res){
