@@ -1,0 +1,41 @@
+# FixProsList
+
+> FixProsList (https://fixproslist.com) is a US home-services directory. Homeowners can find trusted local home-service pros across the USA and post a job for free; home-service businesses can list their business free. Based in Miami Beach, Florida. Open 24/7.
+
+## Services
+
+- Plumbing: https://fixproslist.com/#/miami/plumbing
+- Electrical: https://fixproslist.com/#/miami/electrical
+- Garage Doors: https://fixproslist.com/#/miami/garage-doors
+- Roofing: https://fixproslist.com/#/miami/roofing
+- Appliances: https://fixproslist.com/#/miami/appliances
+- HVAC: https://fixproslist.com/#/miami/hvac
+- Painting: https://fixproslist.com/#/miami/painting
+- 24/7 Emergency: https://fixproslist.com/#/miami/emergency
+
+## Key pages
+
+- Home: https://fixproslist.com/
+- Browse pros: https://fixproslist.com/#/browse
+- Post a job (free): https://fixproslist.com/#/post-a-job
+- List your business (free): https://fixproslist.com/#/add-your-business
+- Partner rules: https://fixproslist.com/partner-rules.html
+- Blog: https://fixproslist.com/blog/
+
+## Cost guides (from the FixProsList blog)
+
+- How much does a plumber cost in 2026: https://fixproslist.com/blog/how-much-does-a-plumber-cost-2026/
+- How much does a plumber cost in Miami: https://fixproslist.com/blog/how-much-does-a-plumber-cost-in-miami/
+- How much does AC repair cost in Florida: https://fixproslist.com/blog/how-much-does-ac-repair-cost-in-florida/
+- How much does it cost to rewire a house: https://fixproslist.com/blog/how-much-does-it-cost-to-rewire-a-house/
+- How much does roof repair cost in Florida: https://fixproslist.com/blog/how-much-does-roof-repair-cost-in-florida/
+- How much does a new garage door cost: https://fixproslist.com/blog/how-much-does-a-new-garage-door-cost/
+- How much does refrigerator repair cost: https://fixproslist.com/blog/how-much-does-refrigerator-repair-cost/
+- How much does it cost to paint a house interior: https://fixproslist.com/blog/how-much-does-it-cost-to-paint-a-house-interior/
+
+## Contact
+
+- Email: info@fixproslist.com
+- Phone: +1 (831) 293-1196
+- Address: 6799 Collins Ave Unit 701, Miami Beach, FL 33141, USA
+- Hours: Open 24 hours, 7 days a week
