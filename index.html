@@ -2160,6 +2160,9 @@ function show(view){
 function route(){
   var hash = (location.hash || "#/").replace(/^#\/?/, "");
   var parts = hash.split("/").filter(Boolean);
+  // Blog articles live at real static URLs (/blog/<slug>/) so Google can index
+  // them; send old shared hash links (#/blog/<slug>) to the static page.
+  if (parts[0] === "blog" && parts[1] && articleBySlug(parts[1])){ location.replace("/blog/" + parts[1] + "/"); return; }
   if (parts.length === 0){
     show("home");
     setMeta(BRAND + " — Find Local Home Service Pros", "Find trusted local home-service pros across the USA, or list your business free. Plumbing, electrical, HVAC, roofing, garage doors, appliances, painting and 24/7 emergency help.");
