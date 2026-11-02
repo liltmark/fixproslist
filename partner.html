@@ -185,6 +185,7 @@
             <option value="appliances">Appliances</option>
             <option value="hvac">HVAC</option>
             <option value="painting">Painting</option>
+            <option value="handyman">Handyman</option>
             <option value="emergency">24/7 Emergency</option>
           </select>
         </div>
@@ -249,7 +250,7 @@
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   var SERVICE_NAMES = { "plumbing":"Plumbing", "electrical":"Electrical", "garage-doors":"Garage Doors",
-    "roofing":"Roofing", "appliances":"Appliances", "hvac":"HVAC", "painting":"Painting", "emergency":"24/7 Emergency" };
+    "roofing":"Roofing", "appliances":"Appliances", "hvac":"HVAC", "painting":"Painting", "handyman":"Handyman", "emergency":"24/7 Emergency" };
   var KIT_TITLES = [
     "Trusted Plumbers in [City] — Leaks, Drains & Water Heaters",
     "Licensed Electricians in [City] — Panels, Wiring & Lighting",
@@ -258,6 +259,7 @@
     "Appliance Repair in [City] — Fridges, Washers, Ovens & Dryers",
     "HVAC Service in [City] — AC Repair, Heating & Tune-Ups",
     "House Painters in [City] — Interior, Exterior & Cabinets",
+    "Handyman Services in [City] — Repairs, Assembly & Odd Jobs",
     "24/7 Emergency Home Repairs in [City] — Help Any Hour"
   ];
 

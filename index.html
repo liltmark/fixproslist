@@ -534,6 +534,7 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
     <a href="#/miami/appliances">Appliances</a>
     <a href="#/miami/hvac">HVAC</a>
     <a href="#/miami/painting">Painting</a>
+    <a href="#/miami/handyman">Handyman</a>
     <a href="#/miami/emergency">24/7 Emergency</a>
   </nav>
   <nav class="sb-sec" aria-label="Partners">
@@ -1230,6 +1231,8 @@ var SERVICES = [
     icon:'<circle cx="12" cy="12" r="2.2"/><path d="M12 9.8c0-2.8.8-4.8 2.6-6.4M14 12.9c2.7.7 4.4 2.1 5.4 4.3M10.2 13.4c-2.3 1.6-4.6 1.9-7 .9"/>' },
   { slug:"painting",    name:"Painting",       plural:"Painters",          blurb:"Interior, exterior & cabinet painting",
     icon:'<rect x="4" y="4" width="13" height="6" rx="1"/><path d="M17 7h3v5h-9v3"/><rect x="9.8" y="15" width="2.4" height="6" rx="1"/>' },
+  { slug:"handyman",    name:"Handyman",       plural:"Handyman Pros",     blurb:"Repairs, assembly, mounting & odd jobs",
+    icon:'<path d="M14.5 3.5 20.5 9.5 18 12l-6-6 2.5-2.5Z"/><path d="M11.5 8.5 3 17l2.5 2.5L14 11"/>' },
   { slug:"emergency",   name:"24/7 Emergency", plural:"24/7 Emergency Pros", blurb:"Burst pipes, outages & urgent repairs — any hour",
     icon:'<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 2M9 2.5h6"/>' }
 ];
@@ -1259,6 +1262,9 @@ var LISTINGS = [
   { id:"easytofix-painting", business:"EasyToFix Homes", service:"painting", phone:"(321) 478-0719", tier:"advertised",
     city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
     about: ABOUT_BASE + " Painting services include interior and exterior painting, cabinet refinishing, drywall patching, and color consultation." },
+  { id:"easytofix-handyman", business:"EasyToFix Homes", service:"handyman", phone:"(831) 293-1196", tier:"advertised",
+    city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
+    about: ABOUT_BASE + " Handyman services include minor home repairs, furniture assembly, TV and shelf mounting, drywall patching, door and lock fixes, and general home maintenance." },
   { id:"easytofix-emergency", business:"EasyToFix Homes", service:"emergency", phone:"(386) 296-6181", tier:"advertised",
     city:"Miami Beach", state:"FL", area:"Miami Beach & nationwide dispatch", hours:"Open 24 hours · 7 days a week",
     about: ABOUT_BASE + " The 24/7 emergency dispatch line handles burst pipes, major leaks, power problems, and any urgent home repair — nights, weekends, and holidays." }
@@ -1387,6 +1393,13 @@ var POOL_KITS = [
       "[Business Name] brings [City] homes back to life with clean, careful painting. Interior rooms, full exteriors and cabinet refinishing — prepped properly and finished beautifully.",
       "Fresh paint, zero mess. [Business Name] serves [City] with color consultation, drywall patching and crisp lines on every wall. Free estimates and tidy crews.",
       "From one room to the whole house, [Business Name] is the painter [City] homeowners recommend. Quality paints, honest timelines, and results you'll love coming home to."
+    ] },
+  { service:"handyman",
+    title:"Handyman Services in [City] — Repairs, Assembly & Odd Jobs",
+    variants:[
+      "One call, one [Business Name] handyman, a whole list done. Minor repairs, furniture assembly, mounting, patching and fixes across [City] — handled cleanly and priced upfront.",
+      "Small jobs still deserve a pro. [Business Name] helps [City] homeowners with repairs, installs and odd jobs that never quite make the contractor list — done right, the first time.",
+      "From a wobbly door to a room that needs putting back together, [Business Name] is [City]'s handyman for honest work at a fair price. Free estimates, tidy finish."
     ] },
   { service:"emergency",
     title:"24/7 Emergency Home Repairs in [City] — Help Any Hour",
@@ -2525,6 +2538,7 @@ route();
     appliances:{name:'Appliance Repair',phone:'(323) 831-1502',href:'#/miami/appliances'},
     hvac:{name:'HVAC',phone:'(858) 955-0579',href:'#/miami/hvac'},
     painting:{name:'Painting',phone:'(321) 478-0719',href:'#/miami/painting'},
+    handyman:{name:'Handyman',phone:'(831) 293-1196',href:'#/miami/handyman'},
     emergency:{name:'24/7 Emergency',phone:'(386) 296-6181',href:'#/miami/emergency'}
   };
   function proAnswer(p){
@@ -2543,6 +2557,7 @@ route();
     if(has('appliance','fridge','washer','dryer','oven')) return proAnswer(PROS.appliances);
     if(has('hvac','air condition',' ac ','heating','furnace')) return proAnswer(PROS.hvac);
     if(has('paint')) return proAnswer(PROS.painting);
+    if(has('handyman','handy man','odd job')) return proAnswer(PROS.handyman);
     if(has('emergency','urgent','burst','flood')) return proAnswer(PROS.emergency);
     if(has('list my','add my','add a business','list a business','get listed','sign up my')) return 'Listing is simple and free: open <a href="#/add-your-business">List Your Business</a>, fill in your business name, contact, service and city, and submit. We review every listing by hand, then it goes live — no card, no contract, free forever.';
     if(has('free','cost to list','charge','fee')) return 'Yes — a Published listing on FixProsList is completely free, forever. No card, no contract, no listing fee. Paid options (the Advertised tier) are optional extras for pros who want top placement. See <a href="#/advertise">Advertise</a> for details.';
