@@ -232,6 +232,8 @@ sm = sm.replace(/<url>[\s\S]*?<\/url>/g, (block) => {
     return block.replace(loc, SITE + "/blog/")
       .replace(/<lastmod>[^<]*<\/lastmod>/, "<lastmod>" + TODAY + "</lastmod>");
   }
+  const m2 = /^https:\/\/fixproslist\.com\/blog\/([a-z0-9-]+)\/$/.exec(loc);
+  if (m2) { presentSlugs.add(m2[1]); return block; }
   const m = /^https:\/\/fixproslist\.com\/#\/blog\/([a-z0-9-]+)\/?$/.exec(loc);
   if (m) {
     replaced++;
