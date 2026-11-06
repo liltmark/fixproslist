@@ -307,7 +307,7 @@ footer .fine{color:var(--ink2);font-size:.88rem;max-width:520px}
 .post-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.84rem;color:var(--ink2)}
 .cat{font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--ink)}
 .article-wrap{max-width:760px}
-.article-wrap h1{font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:900;letter-spacing:-.015em;margin:14px 0 10px}
+.article-wrap h1,.article-wrap h2{font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:900;letter-spacing:-.015em;margin:14px 0 10px}
 .article-photo{border:1.5px dashed var(--line);border-radius:var(--radius);background:var(--surface2);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;color:var(--ink2);margin:22px 0 28px}
 .article-photo svg{width:40px;height:40px;stroke:var(--ink2)}
 .article-photo b{color:var(--ink);font-family:"Archivo";font-size:1rem}
@@ -1575,7 +1575,7 @@ function renderDetail(id){
     '<div class="crumbs"><a href="#/">Home</a> › <a href="#/browse">Browse Pros</a> › <a href="#/miami/' + s.slug + '">' + esc(s.plural) + ' in Miami, FL</a> › ' + esc(l.business) + '</div>' +
     '<div class="detail-head"><div class="top">' +
       '<div class="avatar" aria-hidden="true">' + esc(l.business.charAt(0)) + '</div>' +
-      '<div style="flex:1;min-width:220px"><h1 style="font-size:1.7rem;font-weight:900">' + esc(l.business) + '</h1>' +
+      '<div style="flex:1;min-width:220px"><h2 style="font-size:1.7rem;font-weight:900">' + esc(l.business) + '</h2>' +
       '<div class="svc" style="font-weight:700;color:var(--navy2)">' + esc(s.name) + ' · ' + esc(l.city) + ', ' + esc(l.state) + '</div>' +
       (l.title ? '<div style="font-weight:600;margin-top:6px">' + esc(l.title) + '</div>' : '') +
       '<div class="meta" style="color:var(--ink2);font-size:.92rem;margin-top:4px">' + esc(l.hours) + '</div></div>' +
@@ -1676,7 +1676,7 @@ function renderLanding(citySlug, serviceSlug){
   var ctx = "There are no " + s.name.toLowerCase() + " pros listed in " + c.name + " yet. If that’s your trade, claim this page with a free listing.";
   root.innerHTML =
     '<div class="crumbs"><a href="#/">Home</a> › <a href="#/browse">Browse Pros</a> › ' + esc(s.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</div>' +
-    '<div class="page-head"><h1>' + esc(s.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</h1>' +
+    '<div class="page-head"><h2>' + esc(s.plural) + ' in ' + esc(c.name) + ', ' + esc(c.state) + '</h2>' +
     '<p>Need ' + esc(s.name.toLowerCase()) + ' help in ' + esc(c.name) + '? Compare local pros below and call directly — no middleman, no advance payments. ' + esc(s.blurb) + '.</p></div>' +
     '<section class="block" style="padding-top:24px">' +
       groupHTML("Advertised Pros — Sponsored", ads, ctx) +
@@ -2615,7 +2615,7 @@ function renderArticle(slug){
     '<div class="crumbs"><a href="#/">Home</a> › <a href="#/blog">Blog</a> › ' + esc(a.title) + '</div>' +
     '<article class="article-wrap" style="padding-bottom:8px">' +
       '<div class="post-meta" style="margin-top:26px"><span class="cat">' + esc(a.category) + '</span><span>' + esc(a.date) + '</span><span>· ' + a.minutes + ' min read</span></div>' +
-      '<h1>' + esc(a.title) + '</h1>' +
+      '<h2>' + esc(a.title) + '</h2>' +
       '<img class="article-photo-img" src="' + a.photo + '" alt="' + esc(a.photoAlt || "") + '" loading="lazy">' +
       '<div class="article-body">' + a.body.join("") + '</div>' +
       '<div class="cta-box"><h3>Need a ' + esc(s.name.toLowerCase()) + ' pro?</h3>' +
