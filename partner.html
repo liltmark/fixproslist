@@ -80,7 +80,7 @@
   <!-- DIRECT CALLS INTRO (join page — the model, before sign-up) -->
   <div class="card" id="directCallsCard">
     <h2 style="margin:0 0 6px;font-size:20px;color:var(--blue)">For pros: get customer calls with Direct Calls</h2>
-    <p class="sub">Your FixProsList listing is <b>free forever</b>. With <b>Direct Calls</b>, we put our own tracked number on your listing — calls ring straight to your phone, every call is recorded, and you pay one flat rate only for <b>qualified calls</b> (a new customer in your area, on the phone 90+ seconds about a real job; 60 seconds for appliance repair). One flat rate for every trade: <b>$80 per qualified call</b>. Nothing in advance, no contract, no monthly fee — you pay only after real customer calls come in, settled weekly. Spam, wrong numbers and duplicates are never charged.</p>
+    <p class="sub">Your FixProsList listing is <b>free forever</b>. With <b>Direct Calls</b>, we put our own tracked number on your listing — calls ring straight to your phone, every call is recorded, and you pay only for <b>qualified calls</b> (a new customer in your area, on the phone 90+ seconds about a real job; 60 seconds for appliance repair). The rate is set by your service and your area: <b>$40 to $80 per qualified call</b>, never above $80, and fixed in writing before your calls start. Nothing in advance, no contract, no monthly fee — you pay only after real customer calls come in, settled weekly. Spam, wrong numbers and duplicates are never charged.</p>
     <p class="fine" style="margin-top:0">Full rates and the exact billing rules: <a href="partner-rules.html"><b>Partner Rules — Direct Calls</b></a>. Create your free account below to get started.</p>
     <p class="fine" style="margin-top:8px">Want the full picture first? See the <a href="partner-system.html"><b>Partner System</b></a> — daily posting, your own dashboard and tracked calls, explained in a short video.</p>
   </div>
@@ -214,25 +214,23 @@
       <div class="msg" id="msgListing"></div>
     </div>
 
-    <!-- CALLS & BALANCE (Direct Calls) -->
+    <!-- CALLS & WEEKLY SETTLEMENT (Direct Calls) -->
     <div class="card hidden" id="callsCard">
-      <h2 style="margin:0 0 6px;font-size:20px;color:var(--blue)">Calls &amp; Balance</h2>
-      <p class="sub">Your Direct Calls balance and call log. You are only charged for <b>qualified calls</b> — a new customer in your area, on the phone past your trade's minimum (90 sec, 60 for appliance repair), with a real job. Spam, wrong numbers, duplicates and short calls are always free. Every charged call has a recording. Full rules: <a href="partner-rules.html">Partner Rules</a>.</p>
+      <h2 style="margin:0 0 6px;font-size:20px;color:var(--blue)">Calls &amp; Weekly Settlement</h2>
+      <p class="sub">Your Direct Calls call log and what you owe for the week. You are only charged for <b>qualified calls</b> — a new customer in your area, on the phone past your trade's minimum (90 sec, 60 for appliance repair), with a real job — at your rate of <b>$40 to $80 per qualified call</b>, set by your service and your area and never above $80. Spam, wrong numbers, duplicates and short calls are always free. Every charged call has a recording you can hear. Nothing is paid in advance — charges are settled weekly. Full rules: <a href="partner-rules.html">Partner Rules</a>.</p>
 
-      <div class="row"><span>Current balance</span><span id="cbBalance" style="font-weight:bold">—</span></div>
+      <div class="row"><span>Balance due (settled weekly)</span><span id="cbBalance" style="font-weight:bold">—</span></div>
       <div id="cbNumbers"></div>
 
-      <div class="msg warn" id="cbLowWarn" style="display:none">⚠ Your balance is below $25. Calls pause automatically when your balance can't cover another call — top up soon so you don't miss a customer.</div>
-      <div class="msg err" id="cbPausedWarn" style="display:none">Your call number is currently <b>paused</b> because your balance ran out. Top up to resume calls — your listing itself stays live and free.</div>
+      <div class="msg warn" id="cbLowWarn" style="display:none">⚠ Your balance due is below $25. Nothing is ever paid in advance — you settle after the calls come in. Calls pause automatically while a weekly settlement stays unpaid, so settle on time and don't miss a customer.</div>
+      <div class="msg err" id="cbPausedWarn" style="display:none">Your call number is currently <b>paused</b> because a weekly settlement is unpaid. Settle it to resume calls — your listing itself stays live and free.</div>
 
-      <!-- TODO: replace href with the live Stripe payment link for top-ups. -->
-      <a class="btn accent" id="btnTopUp" href="#" onclick="return false;">Top Up Balance</a>
-      <p class="fine">Prepaid only — no monthly fee, no surprise bills. Unused balance is refunded if you ever leave.</p>
+      <p class="fine">Nothing is paid in advance — no monthly fee, no contract, no surprise bills. You pay only for qualified calls, settled weekly, and every charged call has a recording you can hear.</p>
 
       <h3 style="margin:20px 0 4px;font-size:16px;color:var(--blue)">Recent calls</h3>
       <div id="callsList"><p class="empty-note">Loading your calls…</p></div>
 
-      <h3 style="margin:20px 0 4px;font-size:16px;color:var(--blue)">Balance history</h3>
+      <h3 style="margin:20px 0 4px;font-size:16px;color:var(--blue)">Settlement history</h3>
       <div id="cbTxList"><p class="empty-note">Loading…</p></div>
     </div>
 
